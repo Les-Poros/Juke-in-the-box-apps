@@ -3,4 +3,5 @@ jukeInTheBoxUti/node_modules/*
 jukeInTheBoxUti/platforms/*
 jukeInTheBoxUti/platforms/android/*.idea
 jukeInTheBoxUti/platforms/android/cordova/node_modules/*
+jukeInTheBoxUti/www/.sass-cache/*
 *.idea

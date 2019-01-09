@@ -1,6 +1,8 @@
+$border: grey !default;
+
 .app{
     & h1, .info_musique{
-        border : solid grey 1px;
+        border : solid $border 1px;
         border-radius: 5px;
         margin: 5%;
         padding-top: 5%;

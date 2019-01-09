@@ -1,35 +1,41 @@
+$backgColor: #E4E4E4 !default;
+$textColorButton : #ffffff !default;
+$backgColorButton : #456072 !default;
+$borderColorButton: #0F2636 !default;
+$linkColor: black !default;
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:16px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    width:100%;
+    background-color: $backgColor;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
 
 /* Portrait layout (default) */
 .index {
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    position: absolute;             /* position in the center of the screen */
+    left: 50%;
+    top: 50%;
+    height: 50px;                   /* text area height */
+    width: 225px;                   /* text area width */
+    text-align: center;
+    padding: 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin: -115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .index {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+        background-position: left center;
+        padding: 75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin: -90px 0px 0px -198px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
 }
@@ -40,6 +46,7 @@ body {
 }
 
 h1 {
+<<<<<<< HEAD
     font-size:26px;
     font-weight:normal;
     font-family : "MVBoli";
@@ -47,41 +54,46 @@ h1 {
     overflow:visible;
     padding:0px;
     text-align:center;
+=======
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+>>>>>>> Modif scss
     padding-bottom: 20%;
 }
 
 .home_button{
-    /*border: solid grey 1px;
-    border-radius: 5px;
-    background-color: grey;*/
     margin : 5px;
     padding: 10px;
     display: inline-block;
-    color: #ffffff;
+    color: $textColorButton;
     font-size: 16pt;
     cursor: pointer;
-    background: #456072;
-    background: linear-gradient(top, #456072 0%, #2c4759 100%);
-    background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
-    background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
-    background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
-    border: 1px solid #0F2636;
+    background: $backgColorButton;
+    background: linear-gradient(top, $backgColorButton 0%, #2c4759 100%);
+    background: -moz-linear-gradient(top, $backgColorButton 0%, #2c4759 100%);
+    background: -webkit-linear-gradient(top, $backgColorButton 0%, #2c4759 100%);
+    background: -o-linear-gradient(top, $backgColorButton 0%, #2c4759 100%);
+    border: 1px solid $borderColorButton;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     -o-border-radius: 10px;
-    box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-    -moz-box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-    -webkit-box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-    -o-box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+    -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.50);
 }
 
 .home_home:active{
-    opacity:0.8;
+    opacity: 0.8;
 }
 
-a{
+a {
     text-decoration: none;
-    color : black;
+    color: $linkColor;
 }

@@ -34,9 +34,15 @@ body {
     }
 }
 
+@font-face {
+	font-family: "MVBoli";
+    src: url('../mvboli.ttf');
+}
+
 h1 {
-    font-size:24px;
+    font-size:26px;
     font-weight:normal;
+    font-family : "MVBoli";
     margin:0px;
     overflow:visible;
     padding:0px;

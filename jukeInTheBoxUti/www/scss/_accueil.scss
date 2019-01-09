@@ -1,0 +1,22 @@
+.app{
+    & h1, .info_musique{
+        border : solid grey 1px;
+        border-radius: 5px;
+        margin: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    & .home_button{
+        width: 90%;
+    }
+    text-align:center;
+}
+
+.info_musique{
+    text-align: left;
+    padding-left: 5%;
+}
+
+.img_musique{
+    margin-top: 7%;
+}

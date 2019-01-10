@@ -27,10 +27,24 @@ function recupBibliotheque() {
         }
     }
     desc += " - " + piste["nomPiste"] + " (" + piste["annéePiste"] + ") </p>";
-    desc += "<button class='add_button' onclick='../js/jukeinthebox_addfile.js'>Ajouter à la file</button>";
-    desc += "</div>";
-    desc += "<hr>";
-    return desc;
-  }
+      desc += "<input type='submit' id='add_button" + piste["idPiste"] + "' onclick='addFile(" + piste["idPiste"] + ")' name=" + piste["idPiste"] + " value='Ajouter à la file' />";
+  desc += "</div>";
+  desc += "<hr>";
+  return desc;
+}
+
+function addFile(idPiste) {
+  console.log(idPiste);
+  $.ajax({
+    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addfile.php",
+    type: "POST",
+    data: {
+      'id': idPiste,
+    },
+    headers: {
+      "Authorization": "Basic " + btoa("rimet2u:070998.A")
+    }
+  });
+}
 
   recupBibliotheque();

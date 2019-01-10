@@ -1,6 +1,12 @@
 $border: grey !default;
 
 .app{
+    & .info_musique {
+        background-color: white;
+    }
+    & h1 {
+        background-color: #DAE2FE;
+    }
     & h1, .info_musique{
         border : solid $border 1px;
         border-radius: 5px;

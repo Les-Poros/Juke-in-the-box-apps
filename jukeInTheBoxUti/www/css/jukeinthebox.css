@@ -144,6 +144,12 @@ a {
 .app {
   text-align: center;
 }
+.app .info_musique {
+  background-color: white;
+}
+.app h1 {
+  background-color: #DAE2FE;
+}
 .app h1, .app .info_musique {
   border: solid grey 1px;
   border-radius: 5px;

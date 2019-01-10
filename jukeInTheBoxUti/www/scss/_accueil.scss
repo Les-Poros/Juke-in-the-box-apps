@@ -1,9 +1,6 @@
 $border: grey !default;
 
 .app{
-    & .info_musique {
-        background-color: white;
-    }
     & h1 {
         background-color: #DAE2FE;
     }
@@ -21,8 +18,10 @@ $border: grey !default;
 }
 
 .info_musique{
+    background-color: white;
     text-align: left;
     padding-left: 5%;
+    font-size: 18px;
 }
 
 .img_musique{

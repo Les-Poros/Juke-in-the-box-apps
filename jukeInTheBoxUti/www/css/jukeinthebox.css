@@ -144,9 +144,6 @@ a {
 .app {
   text-align: center;
 }
-.app .info_musique {
-  background-color: white;
-}
 .app h1 {
   background-color: #DAE2FE;
 }
@@ -162,8 +159,10 @@ a {
 }
 
 .info_musique {
+  background-color: white;
   text-align: left;
   padding-left: 5%;
+  font-size: 18px;
 }
 
 .img_musique {

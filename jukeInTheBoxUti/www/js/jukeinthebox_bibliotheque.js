@@ -14,7 +14,7 @@ function recupBibliotheque() {
 
   function descPiste(piste){
     let desc= "<div class='piste'>";
-    desc += "<img src='" + piste["imagePiste"]+ "' width='50px'>";
+    desc += "<img class ='img_piste' src='" + piste["imagePiste"]+ "' />";
     desc += "<p>" 
     let taille = piste["artistes"].length;
     if (taille == 1) {
@@ -26,9 +26,10 @@ function recupBibliotheque() {
             desc += " / " + piste["artistes"][i]["prénom"] +" "+ piste["artistes"][i]["nom"];
         }
     }
-    desc += " - " + piste["nomPiste"] + "</p>";
+    desc += " - " + piste["nomPiste"] + " (" + piste["annéePiste"] + ") </p>";
     desc += "<button class='add_button' onclick='../js/jukeinthebox_addfile.js'>Ajouter à la file</button>";
     desc += "</div>";
+    desc += "<hr>";
     return desc;
   }
 

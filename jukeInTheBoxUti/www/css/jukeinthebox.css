@@ -198,6 +198,7 @@ a {
 .add_button {
   width: 20%;
   height: 80%;
+  word-wrap: normal;
 }
 
 /*# sourceMappingURL=jukeinthebox.css.map */

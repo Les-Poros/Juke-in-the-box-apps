@@ -27,7 +27,7 @@ function recupBibliotheque() {
         }
     }
     desc += " - " + piste["nomPiste"] + " (" + piste["annéePiste"] + ") </p>";
-      desc += "<input type='submit' id='add_button" + piste["idPiste"] + "' onclick='addFile(" + piste["idPiste"] + ")' name=" + piste["idPiste"] + " value='Ajouter à la file' />";
+      desc += "<input class='add_button' type='submit' id='add_button" + piste["idPiste"] + "' onclick='addFile(" + piste["idPiste"] + ")' name=" + piste["idPiste"] + " value='Ajouter à la file' />";
   desc += "</div>";
   desc += "<hr>";
   return desc;

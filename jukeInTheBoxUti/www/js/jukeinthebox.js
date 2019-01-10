@@ -38,3 +38,15 @@ function recupFile() {
   }
 
   recupFile();
+
+  function recupBibliotheque() {
+    $.ajax({
+      url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/index.php",
+      context: document.body,
+      headers: {
+        "Authorization": "Basic " + btoa("rimet2u:070998.A")
+      }
+    }).done(function (data) {
+      let json = JSON.parse(data);
+    });
+  }

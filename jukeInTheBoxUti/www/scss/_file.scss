@@ -1,0 +1,20 @@
+$backgColorFile: white !default;
+
+.file{
+    border : solid $border 1px;
+    border-radius: 5px;
+    margin: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-align: left;
+    height: 70vh;
+    background-color: $backgColorFile;
+}
+
+.musique_file{
+    font-size: 18px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}

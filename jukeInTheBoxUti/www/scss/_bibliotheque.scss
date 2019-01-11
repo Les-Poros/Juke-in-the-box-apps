@@ -1,4 +1,8 @@
-.piste{
+$textColorButton : #ffffff !default;
+$secondColorButtonGradient: #2c4759 !default;
+$blackOpacity03: rgba(0, 0, 0, 0.3) !default;
+$greyOpacity025: rgba(255, 255, 255, 0.25) !default;.piste{
+
     width: 90%;
     height: 100px;
     padding-left: 5%;
@@ -22,5 +26,20 @@
 .add_button{
     width: 20%;
     height: 80%;
-    word-wrap: normal;
+    color: $textColorButton;
+    background: $backgColorButton;
+    background: linear-gradient(top, $backgColorButton 0%, $secondColorButtonGradient 100%);
+    background: -moz-linear-gradient(top, $backgColorButton 0%, $secondColorButtonGradient 100%);
+    background: -webkit-linear-gradient(top, $backgColorButton 0%, $secondColorButtonGradient 100%);
+    background: -o-linear-gradient(top, $backgColorButton 0%, $secondColorButtonGradient 100%);
+    border: 1px solid $borderColorButton;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px $blackOpacity03, inset 1px 1px 0px 0px $greyOpacity025;
+    -moz-box-shadow: 0px 0px 4px 2px $blackOpacity03, inset 1px 1px 0px 0px $greyOpacity025;
+    -webkit-box-shadow: 0px 0px 4px 2px $blackOpacity03, inset 1px 1px 0px 0px $greyOpacity025;
+    -o-box-shadow: 0px 0px 4px 2px $blackOpacity03, inset 1px 1px 0px 0px $greyOpacity025;
+    text-shadow: 1px 1px 0px $blackOpacity03;
 }

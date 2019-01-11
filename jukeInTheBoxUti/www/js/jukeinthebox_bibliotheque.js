@@ -27,7 +27,7 @@ function recupBibliotheque() {
         }
     }
     desc += " - " + piste["nomPiste"] + " (" + piste["annéePiste"] + ") </p>";
-      desc += "<input class='add_button' type='submit' id='add_button" + piste["idPiste"] + "' onclick='addFile(" + piste["idPiste"] + ")' name=" + piste["idPiste"] + " value='Ajouter à la file' />";
+      desc += "<button class='add_button' type='submit' onclick='addFile(" + piste["idPiste"] + ")'>Ajouter à la file</button>";
   desc += "</div>";
   desc += "<hr>";
   return desc;

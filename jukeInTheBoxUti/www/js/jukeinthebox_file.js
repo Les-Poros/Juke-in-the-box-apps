@@ -14,7 +14,7 @@ function recupFile() {
             compteur++;
            }
       }
-      else $(".file").html("Musique Actuelle : Aucune");
+      else $(".file").html("<p class='musique_file'>Musique dans la file : Aucune</p>");
     });
   }
 

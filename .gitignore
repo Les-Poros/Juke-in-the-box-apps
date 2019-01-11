@@ -5,3 +5,9 @@ jukeInTheBoxUti/platforms/android/*.idea
 jukeInTheBoxUti/platforms/android/cordova/node_modules/*
 jukeInTheBoxUti/www/.sass-cache/*
 *.idea
+jukeInTheBoxBar/*.idea
+jukeInTheBoxBar/node_modules/*
+jukeInTheBoxBar/platforms/*
+jukeInTheBoxBar/platforms/android/*.idea
+jukeInTheBoxBar/platforms/android/cordova/node_modules/*
+jukeInTheBoxBar/www/.sass-cache/*

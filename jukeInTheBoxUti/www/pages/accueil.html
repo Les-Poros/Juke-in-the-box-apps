@@ -3,11 +3,10 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="30">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="../css/jukeinthebox.css">
     <title>Juke in the Box</title>
@@ -16,11 +15,13 @@
 <body>
     <div class="app">
         <h1>Juke in the box</h1>
-        <img class="img_musique" src="../img/Pour_que_tu_m'aimes_encore_single.jpg" width="150px" />
-        <div class="info_musique">
-            <p>Titre : Pour que tu m'aimes encore</p>
-            <p>Artiste : Céline Dion</p>
-            <p>Album : D'eux</p>
+        <div class ="musique_en_cours">
+            <!--<img class="img_musique" src="../img/Pour_que_tu_m'aimes_encore_single.jpg" width="150px" />
+            <div class="info_musique">
+                <p>Titre : Pour que tu m'aimes encore</p>
+                <p>Artiste : Céline Dion</p>
+                <p>Album : D'eux</p>
+            </div>-->
         </div>
         <a href="file.html">
             <div class="home_button">
@@ -43,6 +44,9 @@
             </div>
         </a>
     </div>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../js/jukeinthebox_accueil.js"></script>
 </body>
 
 </html>

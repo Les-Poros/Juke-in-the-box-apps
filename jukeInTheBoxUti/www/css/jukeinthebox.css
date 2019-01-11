@@ -154,6 +154,11 @@ a {
   margin-top: 3%;
 }
 
+h2 {
+  display: inline;
+  font-weight: bold;
+}
+
 .file {
   border: solid grey 1px;
   border-radius: 5px;

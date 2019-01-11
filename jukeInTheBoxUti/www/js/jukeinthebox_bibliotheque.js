@@ -1,11 +1,11 @@
-$(document).ajaxStart(function(){
+$(document).ajaxStart(function () {
   $("#wait").css("display", "block");
 });
-    
-$(document).ajaxComplete(function(){
+
+$(document).ajaxComplete(function () {
   $("#wait").css("display", "none");
 });
-    
+
 function descPiste(piste) {
   let desc = "<div class='piste'>";
   desc += "<img class ='img_piste' src='" + piste["imagePiste"] + "' />";
@@ -45,30 +45,29 @@ function addFile(idPiste) {
 }
 
 
-  $(document).ready(function(){
-    $('#search').keyup(function(){
-      var piste = $(this).val();
-      result_search(piste);    
-    });
+$(document).ready(function () {
+  $('#search').keyup(function () {
+    var piste = $(this).val();
+    result_search(piste);
   });
+});
 
 
-function result_search(recherche){
+function result_search(recherche) {
   $.ajax({
-    type:'GET',
+    type: 'GET',
     url: 'https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue.php',
     headers: {
       "Authorization": "Basic " + btoa("rimet2u:070998.A")
     },
     data: 'piste=' + recherche,
   }).done(function (json) {
-    $(".bibliotheque").html("");
-    for (var i=0; i<json["catalogue"]["pistes"].length; i++){
-      $(".bibliotheque").append(descPiste(json["catalogue"]["pistes"][i]));
-     }
+    $(".biblio_pistes").html("");
+    for (var i = 0; i < json["catalogue"]["pistes"].length; i++) {
+      $(".biblio_pistes").append(descPiste(json["catalogue"]["pistes"][i]));
+    }
   });
-  
+
 }
 
 result_search("");
-  

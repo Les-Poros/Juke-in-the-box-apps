@@ -1,0 +1,215 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  background-color: #E4E4E4;
+  font-family: "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.index {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 50px;
+  width: 225px;
+  text-align: center;
+  padding: 0px;
+  margin: -115px 0px 0px -112px;
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px) {
+  .index {
+    background-position: left center;
+    padding: 75px 0px 75px 170px;
+    margin: -90px 0px 0px -198px;
+  }
+}
+@font-face {
+  font-family: "MVBoli";
+  src: url("../mvboli.ttf");
+}
+h1 {
+  font-size: 26px;
+  font-weight: normal;
+  font-family: "MVBoli";
+  margin: 0px;
+  overflow: visible;
+  padding: 0px;
+  text-align: center;
+  padding-bottom: 20%;
+}
+
+.home_button {
+  margin: 5px;
+  padding: 10px;
+  display: inline-block;
+  color: #ffffff;
+  font-size: 16pt;
+  background: #456072;
+  background: linear-gradient(top, #456072 0%, #2c4759 100%);
+  background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
+  background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
+  background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
+  border: 1px solid #0F2636;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.home_home:active {
+  opacity: 0.8;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.app {
+  text-align: center;
+}
+.app h1 {
+  background-color: #DAE2FE;
+}
+.app h1, .app .info_musique {
+  border: solid grey 1px;
+  border-radius: 5px;
+  margin: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.app .home_button {
+  width: 90%;
+}
+
+.info_musique {
+  background-color: white;
+  text-align: left;
+  padding-left: 5%;
+  font-size: 18px;
+  width: 90%;
+}
+
+.img_musique {
+  margin-top: 3%;
+}
+
+h2 {
+  display: inline;
+  font-weight: bold;
+}
+
+.musique_en_cours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wait {
+  display: none;
+  border: 16px solid white;
+  border-top: 16px solid #456072;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.file {
+  border: solid grey 1px;
+  border-radius: 5px;
+  margin: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: left;
+  min-height: 70vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file_piste {
+  width: 100%;
+}
+
+.musique_file {
+  font-size: 18px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+/*# sourceMappingURL=jukeinthebox.css.map */

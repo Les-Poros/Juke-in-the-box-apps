@@ -40,7 +40,7 @@ function addFile(idPiste) {
     }
   }).done(function () {
     let lien = window.location.toString().split("bibliotheque.html");
-    window.location = lien[0] + 'file.html';
+    window.location = lien[0] + 'accueil.html';
   });
 }
 

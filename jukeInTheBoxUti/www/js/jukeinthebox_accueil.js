@@ -2,6 +2,14 @@ let music;
 let idmusic;
 
 function recupFile() {
+    $(document).ajaxStart(function(){
+        $("#wait").css("display", "block");
+      });
+      
+      $(document).ajaxComplete(function(){
+        $("#wait").css("display", "none");
+      });
+      
     $.ajax({
       url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/index.php",
       context: document.body,

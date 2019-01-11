@@ -1,4 +1,12 @@
 function recupFile() {
+  $(document).ajaxStart(function(){
+      $("#wait").css("display", "block");
+    });
+    
+    $(document).ajaxComplete(function(){
+      $("#wait").css("display", "none");
+    });
+    
     $.ajax({
       url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/index.php",
       context: document.body,
@@ -10,11 +18,11 @@ function recupFile() {
       let json = JSON.parse(data);
       if (json["pistes"][0] != null) {
           for (var i=0; i<json["pistes"].length; i++){
-            $(".file").append("<p class='musique_file'>"+compteur + descPiste(json["pistes"][i]["piste"]));
+            $(".file_piste").append("<p class='musique_file'>"+compteur + descPiste(json["pistes"][i]["piste"]));
             compteur++;
            }
       }
-      else $(".file").html("<p class='musique_file'>Musique dans la file : Aucune</p>");
+      else $(".file_piste").html("<p class='musique_file'>Musique dans la file : Aucune</p>");
     });
   }
 

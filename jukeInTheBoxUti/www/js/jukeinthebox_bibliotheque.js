@@ -1,4 +1,11 @@
-
+$(document).ajaxStart(function(){
+  $("#wait").css("display", "block");
+});
+    
+$(document).ajaxComplete(function(){
+  $("#wait").css("display", "none");
+});
+    
 function descPiste(piste) {
   let desc = "<div class='piste'>";
   desc += "<img class ='img_piste' src='" + piste["imagePiste"] + "' />";

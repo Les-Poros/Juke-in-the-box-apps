@@ -9,6 +9,9 @@ $backgColorFile: white !default;
     text-align: left;
     min-height: 70vh;
     background-color: $backgColorFile;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .musique_file{

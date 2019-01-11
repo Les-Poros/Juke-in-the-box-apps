@@ -148,6 +148,7 @@ a {
   text-align: left;
   padding-left: 5%;
   font-size: 18px;
+  width: 90%;
 }
 
 .img_musique {
@@ -159,6 +160,32 @@ h2 {
   font-weight: bold;
 }
 
+.musique_en_cours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wait {
+  display: none;
+  border: 16px solid white;
+  border-top: 16px solid #456072;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .file {
   border: solid grey 1px;
   border-radius: 5px;
@@ -168,6 +195,9 @@ h2 {
   text-align: left;
   min-height: 70vh;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .musique_file {
@@ -193,6 +223,12 @@ h2 {
   width: 60%;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.bibliotheque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .img_piste {

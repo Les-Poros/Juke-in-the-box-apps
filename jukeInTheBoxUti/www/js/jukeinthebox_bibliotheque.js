@@ -30,7 +30,7 @@ function descPiste(piste) {
 function addFile(idPiste) {
   console.log(idPiste);
   $.ajax({
-    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addfile.php",
+    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addfile",
     type: "POST",
     data: {
       'id': idPiste,
@@ -57,7 +57,7 @@ $(document).ready(function () {
 function result_search(recherche) {
   $.ajax({
     type: 'GET',
-    url: 'https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue.php',
+    url: 'https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue',
     headers: {
       "Authorization": "Basic " + btoa("rimet2u:070998.A")
     },

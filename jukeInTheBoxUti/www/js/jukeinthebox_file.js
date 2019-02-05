@@ -8,14 +8,14 @@ function recupFile() {
   });
 
   $.ajax({
-    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/index.php",
+    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/",
     context: document.body,
     headers: {
       "Authorization": "Basic " + btoa("rimet2u:070998.A")
     }
   }).done(function (data) {
     let compteur = 1;
-    let json = JSON.parse(data);
+    let json = data;
     if (json["pistes"][0] != null) {
       for (var i = 0; i < json["pistes"].length; i++) {
         $(".file_piste").append("<p class='musique_file'>" + compteur + descPiste(json["pistes"][i]["piste"]));
@@ -38,7 +38,7 @@ function descPiste(piste) {
       desc += " / " + piste["artistes"][i]["prénom"] + " " + piste["artistes"][i]["nom"];
     }
   }
-  desc += " - " + piste["nom"] + "</p>";
+  desc += " - " + piste["nomPiste"] + "</p>";
   return desc;
 }
 

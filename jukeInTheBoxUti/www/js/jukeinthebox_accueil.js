@@ -1,4 +1,49 @@
-let music;
+var accueil = new Vue({
+  el: '.musique_en_cours',
+  data: {
+    musique: '',
+    estVide: true,
+    aPlusieursArtistes: false,
+    nomPiste: '',
+    albumPiste: '',
+    imagePiste: '',
+    artistesPiste: '',
+    prenomArtiste: '',
+    nomArtiste: '',
+  },
+  methods: {
+  },
+  computed: {
+  },
+  created() {
+    axios
+      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/', {
+        context: document.body,
+        headers: {
+          "Authorization": "Basic " + btoa("rimet2u:070998.A")
+        }
+      })
+      .then((response) => {
+        if (response.data.pistes.length > 0) {
+          this.musique = response.data.pistes[0].piste;
+          this.estVide = false;
+          this.nomPiste = this.musique["nomPiste"];
+          this.albumPiste = this.musique["albums"][0]["nomAlbum"];
+          this.imagePiste = this.musique["imagePiste"];
+          if (this.musique["artistes"].length > 1) {
+            this.aPlusieursArtistes = true;
+            this.artistesPiste = this.musique["artistes"];
+          }
+          else {
+            this.prenomArtiste = this.musique["artistes"][0]["prénom"];
+            this.nomArtiste = this.musique["artistes"][0]["nom"];
+          }
+        }
+      });
+  }
+});
+
+/*let music;
 let idmusic;
 
 function recupFile() {
@@ -47,4 +92,4 @@ function descPiste(piste) {
   $(".musique_en_cours").append("<div class='info_musique'>" + desc + "</div>");
 }
 
-recupFile();
+recupFile();*/

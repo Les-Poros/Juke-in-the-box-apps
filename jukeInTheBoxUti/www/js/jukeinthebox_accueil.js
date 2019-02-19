@@ -19,9 +19,6 @@ var accueil = new Vue({
     axios
       .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/', {
         context: document.body,
-        headers: {
-          "Authorization": "Basic " + btoa("rimet2u:070998.A")
-        }
       })
       .then((response) => {
         if (response.data.pistes.length > 0) {

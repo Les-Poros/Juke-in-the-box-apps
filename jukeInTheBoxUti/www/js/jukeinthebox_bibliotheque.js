@@ -34,9 +34,6 @@ function addFile(idPiste) {
     type: "POST",
     data: {
       'id': idPiste,
-    },
-    headers: {
-      "Authorization": "Basic " + btoa("rimet2u:070998.A")
     }
   }).done(function () {
     let lien = window.location.toString().split("bibliotheque.html");

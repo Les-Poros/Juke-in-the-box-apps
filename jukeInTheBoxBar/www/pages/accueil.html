@@ -6,7 +6,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta charset="UTF-8">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="../css/jukeinthebox.css">
     <title>Juke in the Box</title>
 </head>
@@ -15,7 +16,26 @@
     <div class="app">
         <h1>Juke in the box</h1>
         <div class="musique_en_cours">
-            <div id="wait"></div>
+            <section v-if="estVide">
+                <div class='info_musique'>
+                    <p>Musique dans la file : Aucune</p>
+                </div>
+            </section>
+            <section v-else>
+                <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
+                <div class='info_musique'>
+                    <h2>Titre : </h2>{{nomPiste}}<br />
+                    <h2>Artiste :</h2>
+                    <p v-if='aPlusieursArtistes' v-for="artiste in artistesPiste">
+                        {{artiste.prénom}} {{artiste.nom}}<br />
+                    </p>
+                    <p v-else>
+                        {{prenomArtiste}} {{nomArtiste}}<br />
+                    </p>
+                    <h2>Album : </h2>{{albumPiste}}<br />
+                </div>
+            </section>
+            <!--<div id="wait"></div>-->
         </div>
         <a href="file.html">
             <div class="home_button">
@@ -39,7 +59,9 @@
         </a>
     </div>
 
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
     <script type="text/javascript" src="../js/jukeinthebox_accueil.js"></script>
 </body>
 

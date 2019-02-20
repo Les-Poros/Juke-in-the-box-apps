@@ -5,7 +5,8 @@
 <head>
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport"
+                content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../css/jukeinthebox.css">
         <title>Juke in the Box</title>
@@ -17,13 +18,16 @@
                 <input type="search" class="barre" id="search" placeholder="rechercher">
                 <div class="bibliotheque">
                         <div id="wait"></div>
-                        <div class="biblio_pistes"></div>
+                        <div class="biblio_pistes" v-html="descPiste(listMusiques)">
+                        </div>
                 </div>
 
                 <div id="search_result"></div>
         </div>
 
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
         <script type="text/javascript" src="../js/jukeinthebox_bibliotheque.js"></script>
 </body>
 

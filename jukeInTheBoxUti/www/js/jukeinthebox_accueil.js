@@ -17,7 +17,7 @@ var accueil = new Vue({
   },
   created() {
     axios
-      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/', {
+      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/File/'+token, {
         context: document.body,
       })
       .then((response) => {

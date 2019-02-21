@@ -4,7 +4,6 @@ $blackOpacity03: rgba(0, 0, 0, 0.3) !default;
 $greyOpacity025: rgba(255, 255, 255, 0.25) !default;
 
 .piste{
-    width: 90%;
     height: 100px;
     padding-left: 5%;
     padding-right: 5%;
@@ -26,9 +25,14 @@ $greyOpacity025: rgba(255, 255, 255, 0.25) !default;
     align-items: center;
 }
 
-.img_piste{
-    width: 50px;
-}
+.biblio_pistes {
+    width: 70%;
+   }
+
+.img_piste {
+    width: 20%;
+    height: inherit;
+  }
 
 .add_button{
     width: 20%;

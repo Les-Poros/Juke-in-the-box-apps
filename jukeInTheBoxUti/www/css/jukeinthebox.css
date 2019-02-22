@@ -213,7 +213,6 @@ h2 {
 }
 
 .piste {
-  width: 90%;
   height: 100px;
   padding-left: 5%;
   padding-right: 5%;
@@ -235,8 +234,13 @@ h2 {
   align-items: center;
 }
 
+.biblio_pistes {
+ width: 70%;
+}
+
 .img_piste {
-  width: 50px;
+  width: 20%;
+  height: inherit;
 }
 
 .add_button {

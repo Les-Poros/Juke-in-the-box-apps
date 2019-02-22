@@ -1,19 +1,23 @@
+
 var accueil = new Vue({
   el: '.file',
   data: {
     tabMusiques: [],
     estVideFile: true,
+    token:''
   },
   methods: {
   },
   computed: {
   },
   created() {
+
     axios
-      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/', {
+      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/File/'+token, {
         context: document.body
       })
       .then((response) => {
+        console.log(token);
         if (response.data.pistes.length > 0) {
           let json = response.data;
           this.estVideFile = false;

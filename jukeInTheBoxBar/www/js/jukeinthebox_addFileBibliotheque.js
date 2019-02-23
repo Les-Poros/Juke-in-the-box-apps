@@ -7,11 +7,12 @@ var bibliotheque = new Vue({
     methods: {
       getCatalogue : function (){
         axios
-        .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue/"+token, {
-          params: {
-            "piste":this.search
-          }
-        })
+        .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
+        params: {
+          "piste":this.search,
+          "bartender":token
+        }
+      })
         .then((response) => {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
         });

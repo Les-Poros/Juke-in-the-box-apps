@@ -24,16 +24,17 @@ var content_biblio = new Vue({
     //On part du principe qu'il n'y a pour l'instant qu'une bibliothèque catalogue/1
     created() {
       axios
-        .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue/1', {
-          context: document.body,
-        })
+      .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
+        params: {
+          "bartender":token
+        }
+      })
         .then((response) => {
             
             if (response.data.catalogue.pistes.length > 0) {
-              
+              console.log(response);
               //On récupère le titre de la bibliothèque
-                this.bibliotheque = response.data.catalogue.pistes[0].bibliotheques ;
-                this.titreBiblio = this.bibliotheque[0]['titre'];
+                this.titreBiblio =  response.data.catalogue["nomCatag"] ;
               //On récupère le contenu de la bibliothèque. Comme il y a plusieurs
               //pistes dans la bibliothèque, on boucle sur toutes les pistes.
               for (var i = 0; i < response.data.catalogue.pistes.length ; i++) {

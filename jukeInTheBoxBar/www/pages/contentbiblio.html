@@ -18,17 +18,22 @@
             <h2>Votre bibliotheque: {{titreBiblio}}</h2>
            
                   
-                    <div class='info_musique'>
-                        <h2>Titre : </h2>{{nomPiste}}<br />
-                        <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
-                        <h2>Artiste : </h2>{{nomArtiste}}
-                        <!-- <p v-if='aPlusieursArtistes' v-for="artiste in artistesPiste">
-                           {{nomArtiste}}<br />
-                        </p>
-                        <p v-else>
-                            {{prenomArtiste}} {{nomArtiste}}<br />
-                        </p> -->
-                        <h2>Album : </h2>{{albumPiste}}<br />
+                    <div class='info_musique'>       
+                        <div class='file_piste'>   
+                                <p class='musique_file' v-html="tabPiste"></p>                            
+                                <!-- <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
+                                <h2>Artiste : </h2>{{nomArtiste}}
+                                <h2>Titre : </h2>{{nomPiste}} -->
+                                <!-- <p v-if='aPlusieursArtistes' v-for="artiste in artistesPiste">
+                                   {{nomArtiste}}<br />
+                                </p>
+                                <p v-else>
+                                    {{prenomArtiste}} {{nomArtiste}}<br />
+                                </p> -->
+                                <!-- <h2>Album : </h2>{{albumPiste}}     
+                                <h2>Genre : </h2>{{genrePiste}}                        -->
+                            <!-- </p> -->
+                    </div>
                     </div>
                 
             <!-- <div id="wait"></div> -->

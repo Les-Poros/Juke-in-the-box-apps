@@ -13,6 +13,9 @@ var content_biblio = new Vue({
     artistesPiste: '',
     prenomArtiste: '',
     nomArtiste: '',
+    genrePiste: '',
+    tabPiste:[],
+    
     },
     methods: {
     },
@@ -24,18 +27,22 @@ var content_biblio = new Vue({
           context: document.body,
         })
         .then((response) => {
-            console.log(response);
+            
             if (response.data.catalogue.pistes.length > 0) {
+              
               //On récupère le titre de la bibliothèque
                 this.bibliotheque = response.data.catalogue.pistes[0].bibliotheques ;
                 this.titreBiblio = this.bibliotheque[0]['titre'];
               //On récupère le contenu de la bibliothèque
-                this.musique = response.data.catalogue.pistes[0];
+              for (var i = 0; i < response.data.catalogue.pistes.length ; i++) {
+                this.musique = response.data.catalogue.pistes[i];
                 
                 this.estVide = false;
                 this.nomPiste = this.musique["nomPiste"];
                 this.albumPiste = this.musique["albums"][0]["nomAlbum"];
                 this.imagePiste = this.musique["imagePiste"];
+                this.genrePiste = this.musique["genres"][0];
+                
                 
                 if (this.musique["artistes"].length > 1) {
                   this.aPlusieursArtistes = true;
@@ -45,8 +52,10 @@ var content_biblio = new Vue({
                   this.prenomArtiste = this.musique["artistes"][0]["prénom"];
                   this.nomArtiste = this.musique["artistes"][0]["nom"];
                 }
-                console.log(this.nomArtiste);
-                
+              
+                this.tabPiste+=('<img  style=width:150px src='+ this.imagePiste+'>'+'<h2> artiste: </h2>'+this.nomArtiste+'<h2> titre:</h2>'+this.nomPiste+'<h2> album:</h2>'+this.albumPiste+''+'<h2> genre: </h2>'+this.genrePiste+'<br />');
+              }
+               
             }
         });
     }

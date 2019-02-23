@@ -24,15 +24,24 @@
             <section v-else>
                 <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
                 <div class='info_musique'>
-                    <h2>Titre : </h2>{{nomPiste}}<br />
-                    <h2>Artiste :</h2>
-                    <p v-if='aPlusieursArtistes' v-for="artiste in artistesPiste">
-                        {{artiste.prénom}} {{artiste.nom}}<br />
+                    <h2>Titre</h2>
+                    <p>{{nomPiste}}</p>
+                    <hr/>
+                    <h2>Artiste</h2>
+                    <p v-if='aPlusieursArtistes'>
+                        <span v-for="artiste in artistesPiste">{{artiste.prénom}} {{artiste.nom}}<br /></span>
                     </p>
                     <p v-else>
                         {{prenomArtiste}} {{nomArtiste}}<br />
                     </p>
-                    <h2>Album : </h2>{{albumPiste}}<br />
+                    <hr/>
+                    <h2>Album</h2><br />
+                    <p v-if='aPlusieursAlbums'>
+                        <span v-for="album in albumsPiste">{{album.nomAlbum}}<br /></span>
+                    </p>
+                    <p v-else>
+                        {{nomAlbum}}<br />
+                    </p>
                 </div>
             </section>
             <!--<div id="wait"></div>-->

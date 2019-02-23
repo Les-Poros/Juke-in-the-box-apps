@@ -20,13 +20,15 @@ $backgColorButton : #456072 !default;
     text-align:center;
 }
 
-.info_musique{
-    background-color: $backgColorInfosMus;
-    text-align: left;
+.app .info_musique {
+    background-color: white;
     padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 0;
+    margin-right: 0;
     font-size: 18px;
     width: 90%;
-}
+  }
 
 .img_musique{
     margin-top: 3%;

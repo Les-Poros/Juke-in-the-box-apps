@@ -21,6 +21,7 @@ var content_biblio = new Vue({
     },
     computed: {
     },
+    //On part du principe qu'il n'y a pour l'instant qu'une bibliothèque catalogue/1
     created() {
       axios
         .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue/1', {
@@ -33,7 +34,8 @@ var content_biblio = new Vue({
               //On récupère le titre de la bibliothèque
                 this.bibliotheque = response.data.catalogue.pistes[0].bibliotheques ;
                 this.titreBiblio = this.bibliotheque[0]['titre'];
-              //On récupère le contenu de la bibliothèque
+              //On récupère le contenu de la bibliothèque. Comme il y a plusieurs
+              //pistes dans la bibliothèque, on boucle sur toutes les pistes.
               for (var i = 0; i < response.data.catalogue.pistes.length ; i++) {
                 this.musique = response.data.catalogue.pistes[i];
                 
@@ -52,7 +54,8 @@ var content_biblio = new Vue({
                   this.prenomArtiste = this.musique["artistes"][0]["prénom"];
                   this.nomArtiste = this.musique["artistes"][0]["nom"];
                 }
-              
+                
+                //On ajoute les informations de chaque piste dans tabPiste qui sera interprété dans le html
                 this.tabPiste+=('<img  style=width:150px src='+ this.imagePiste+'>'+'<h2> artiste: </h2>'+this.nomArtiste+'<h2> titre:</h2>'+this.nomPiste+'<h2> album:</h2>'+this.albumPiste+''+'<h2> genre: </h2>'+this.genrePiste+'<br />');
               }
                

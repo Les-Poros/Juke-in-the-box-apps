@@ -14,15 +14,16 @@ var bibliotheque = new Vue({
         }
       })
         .then((response) => {
+          console.log(response);
           this.listMusiques = response["data"]["catalogue"]["pistes"];
         });
       },
       addFileBiblio : function(idPiste){
-        console.log(idPiste);
+        
       const params = new URLSearchParams();
       params.append('id', idPiste);
       params.append('bartender', token);
-      console.log(token);
+      
       axios
         .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addFileBiblio", params)
           .then(() => {

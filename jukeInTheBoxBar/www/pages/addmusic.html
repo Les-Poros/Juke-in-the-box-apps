@@ -22,7 +22,7 @@
                                         <div class='piste'>
                                                         <img style=width:150px class ='img_piste' :src="piste.imagePiste" />
                                                         <p><span v-for="artiste in piste.artistes">{{artiste.prénom}} {{artiste.nom}} </span>- {{piste.nomPiste}} </p>
-                                                        <button class='add_button' v-on:click='addFile(piste.idPiste)'>Ajouter à la Bibliothèque</button>
+                                                        <button class='add_button' v-on:click='addFileBiblio(piste.idPiste)'>Ajouter à la Bibliothèque</button>
                                         </div>
                         </div>
                 </div>

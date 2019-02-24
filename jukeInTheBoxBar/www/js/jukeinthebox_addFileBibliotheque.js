@@ -22,12 +22,13 @@ var bibliotheque = new Vue({
       const params = new URLSearchParams();
       params.append('id', idPiste);
       params.append('bartender', token);
+      console.log(token);
       axios
         .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addFileBiblio", params)
           .then(() => {
-            let lien = window.location.toString().split("bibliotheque.html");
+            let lien = window.location.toString().split("addmusic.html");
             window.location = lien[0] + 'accueil.html';
-            window.alert('Votre musique a été ajoutée à la file !');
+            window.alert('Votre musique a été ajoutée à la Bibliothèque !');
           });
           
       },

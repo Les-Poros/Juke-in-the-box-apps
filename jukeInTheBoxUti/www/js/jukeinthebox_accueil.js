@@ -1,24 +1,27 @@
 var accueil = new Vue({
   el: '.musique_en_cours',
   data: {
-    musique: '',
+    musique: 'aucune',
     estVide: true,
     aPlusieursArtistes: false,
-    nomPiste: '',
-    albumPiste: '',
+    aPlusieursAlbums: false,
+    nomPiste: 'aucune',
+    albumsPiste: '',
+    nomAlbum:'',
     imagePiste: '',
     artistesPiste: '',
     prenomArtiste: '',
     nomArtiste: '',
   },
   methods: {
-  },
-  computed: {
-  },
-  created() {
-    axios
-      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/File/'+token, {
+    getFirstFile : function(){
+      axios
+      .get('https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/File', {
         context: document.body,
+        params:{
+          "token":token,
+          "first":true
+              },
       })
       .then((response) => {
         if (response.data.pistes.length > 0) {
@@ -32,61 +35,39 @@ var accueil = new Vue({
             this.artistesPiste = this.musique["artistes"];
           }
           else {
+            this.aPlusieursArtistes = false;
             this.prenomArtiste = this.musique["artistes"][0]["prénom"];
             this.nomArtiste = this.musique["artistes"][0]["nom"];
           }
+          if (this.musique["albums"].length > 1) {
+            this.aPlusieursAlbums = true;
+            this.albumsPiste = this.musique["albums"];
+          }
+          else {
+            this.aPlusieursAlbums = false;
+            this.nomAlbum = this.musique["albums"][0]["nomAlbum"];
+          }
+        }
+        else{
+          this.musique= 'aucune';
+          this.estVide= true;
+          this.aPlusieursArtistes= false;
+          this.aPlusieursAlbums= false;
+          this.nomPiste= 'aucune';
+          this.albumsPiste= '';
+          this.nomAlbum='';
+          this.imagePiste= '';
+          this.artistesPiste= '';
+          this.prenomArtiste= '';
+          this.nomArtiste= '';
         }
       });
+    }
+  },
+  computed: {
+  },
+  created() {
+    this.getFirstFile();
+    setInterval(function(){accueil.getFirstFile();}, 15000);
   }
 });
-
-/*let music;
-let idmusic;
-
-function recupFile() {
-  $(document).ajaxStart(function () {
-    $("#wait").css("display", "block");
-  });
-
-  $(document).ajaxComplete(function () {
-    $("#wait").css("display", "none");
-  });
-
-  $.ajax({
-    url: "https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/",
-    context: document.body,
-    headers: {
-      "Authorization": "Basic " + btoa("rimet2u:070998.A")
-    }
-  }).done(function (data) {
-    let json = data;
-    if (json["pistes"][0] != null) {
-      if (idmusic != json["pistes"][0]["idFile"]) {
-        idmusic = json["pistes"][0]["idFile"];
-      }
-      descPiste(json["pistes"][0]["piste"]);
-    }
-    else $(".musique_en_cours").html("<div class='info_musique'> <p>Musique dans la file : Aucune</p> </div>");
-  });
-}
-
-function descPiste(piste) {
-  let desc = "<p><h2>Titre :</h2> " + piste["nomPiste"] + "</p>";
-  desc += "<p><h2>Artiste :</h2> ";
-  let taille = piste["artistes"].length;
-  if (taille == 1) {
-    desc += piste["artistes"][0]["prénom"] + " " + piste["artistes"][0]["nom"];
-  }
-  else {
-    desc += piste["artistes"][0]["prénom"] + " " + piste["artistes"][0]["nom"];
-    for (var i = 1; i < taille; i++) {
-      desc += " / " + piste["artistes"][i]["prénom"] + " " + piste["artistes"][i]["nom"];
-    }
-  }
-  desc += "</p>";
-  desc += "<p><h2>Album : </h2>" + piste["albums"][0]["nomAlbum"] + "</p>";
-  $(".musique_en_cours").append("<img class='img_musique' src='" + piste["imagePiste"] + "' width='150px' />");
-  $(".musique_en_cours").append("<div class='info_musique'>" + desc + "</div>");
-}
-
-recupFile();*/

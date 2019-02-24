@@ -16,15 +16,17 @@
         <div class="app">
                 <h1>Juke in the box</h1>
                 <div class="file">
-                        <!--<div id="wait"></div>-->
-                        <section v-if="estVideFile">
+                        <section>
                                 <div class='file_piste'>
-                                        <p>Musique dans la file : Aucune</p>
-                                </div>
-                        </section>
-                        <section v-else>
-                                <div class='file_piste'>
-                                        <p class='musique_file' v-for="musique in tabMusiques">{{musique}}</p>
+                                        <p class='musique_file' v-for="(musique,index) in listMusiques">
+                                                {{index}})
+                                               <span v-for="(artiste,index) in musique.piste.artistes">
+                                                       {{artiste.prénom}} {{artiste.nom}} 
+                                                       <span v-if="index != Object.keys(musique.piste.artistes).length - 1">
+                                                                 /
+                                                       </span> 
+                                                </span>- {{musique.piste.nomPiste}}
+                                        </p>
                                 </div>
                         </section>
 

@@ -1,1 +1,1 @@
-var token="1";
+var token="qrcode";

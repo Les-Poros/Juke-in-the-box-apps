@@ -143,10 +143,12 @@ a {
   width: 90%;
 }
 
-.info_musique {
+.app .info_musique {
   background-color: white;
-  text-align: left;
   padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 0;
+  margin-right: 0;
   font-size: 18px;
   width: 90%;
 }

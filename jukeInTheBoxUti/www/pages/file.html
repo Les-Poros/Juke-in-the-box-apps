@@ -5,7 +5,8 @@
 <head>
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport"
+                content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta charset="UTF-8">
         <!--<meta http-equiv="refresh" content="15">-->
         <link rel="stylesheet" type="text/css" href="../css/jukeinthebox.css">
@@ -13,18 +14,26 @@
 </head>
 
 <body>
+        <div v-cloak class="modal" v-bind:class="{ unshow : unshow }">
+                <div class="modal-content">
+                        <input type="search" v-model="token" type="text" class="" id="token"
+                                placeholder="Entrer votre qrcode" />
+                        <button v-on:click="disparait()">Valider</button>
+                </div>
+        </div>
         <div class="app">
                 <h1>Juke in the box</h1>
                 <div class="file">
                         <section>
                                 <div class='file_piste'>
-                                        <p class='musique_file' v-for="(musique,index) in listMusiques">
+                                        <p v-cloak class='musique_file' v-for="(musique,index) in listMusiques">
                                                 {{index}})
-                                               <span v-for="(artiste,index) in musique.piste.artistes">
-                                                       {{artiste.prénom}} {{artiste.nom}} 
-                                                       <span v-if="index != Object.keys(musique.piste.artistes).length - 1">
-                                                                 /
-                                                       </span> 
+                                                <span v-for="(artiste,index) in musique.piste.artistes">
+                                                        {{artiste.prénom}} {{artiste.nom}}
+                                                        <span
+                                                                v-if="index != Object.keys(musique.piste.artistes).length - 1">
+                                                                /
+                                                        </span>
                                                 </span>- {{musique.piste.nomPiste}}
                                         </p>
                                 </div>
@@ -34,9 +43,9 @@
         </div>
 
         <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
-        <script src="../js/token.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
         <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
+        <script src="../js/token.js"></script>
         <script type="text/javascript" src="../js/jukeinthebox_file.js"></script>
 </body>
 

@@ -29,7 +29,6 @@ var content = new Vue({
         .then(() => {
           let lien = window.location.toString().split("bibliotheque.html");
           window.location = lien[0] + 'accueil.html';
-          window.alert('Votre musique a été ajoutée à la file !');
         });
     }
   },

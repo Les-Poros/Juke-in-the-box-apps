@@ -26,14 +26,14 @@
                 <div class="file">
                         <section>
                                 <div class='file_piste'>
-                                        <p v-cloak class='musique_file' v-for="(musique,index) in listMusiques">
-                                                {{index}})
-                                                <span v-for="(artiste,index) in musique.piste.artistes">
-                                                        {{artiste.prénom}} {{artiste.nom}}
-                                                        <span
-                                                                v-if="index != Object.keys(musique.piste.artistes).length - 1">
-                                                                /
-                                                        </span>
+
+                                        <p class='musique_file' v-for="(musique,index) in listMusiques">
+                                                {{index+1}})
+                                               <span v-for="(artiste,index) in musique.piste.artistes">
+                                                       {{artiste.prénom}} {{artiste.nom}} 
+                                                       <span v-if="index != Object.keys(musique.piste.artistes).length - 1">
+                                                                 /
+                                                       </span> 
                                                 </span>- {{musique.piste.nomPiste}}
                                         </p>
                                 </div>
@@ -42,7 +42,6 @@
                 </div>
         </div>
 
-        <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
         <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
         <script src="../js/token.js"></script>

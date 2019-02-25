@@ -143,10 +143,12 @@ a {
   width: 90%;
 }
 
-.info_musique {
+.app .info_musique {
   background-color: white;
-  text-align: left;
   padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 0;
+  margin-right: 0;
   font-size: 18px;
   width: 90%;
 }
@@ -164,6 +166,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.musique_en_cours section {
+  width: 80%;
 }
 
 #wait {
@@ -213,7 +218,6 @@ h2 {
 }
 
 .piste {
-  width: 90%;
   height: 100px;
   padding-left: 5%;
   padding-right: 5%;
@@ -224,7 +228,7 @@ h2 {
   align-items: center;
 }
 .piste p {
-  width: 60%;
+  width: 50%;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -235,8 +239,13 @@ h2 {
   align-items: center;
 }
 
+.biblio_pistes {
+  width: 95%;
+}
+
 .img_piste {
-  width: 50px;
+  width: 30%;
+  height: inherit;
 }
 
 .add_button {

@@ -12,14 +12,27 @@
 </head>
 
 <body>
-    <div class="app">
-        <h1>Juke in the box</h1>
-        <div class="bibliotheque">
-            <h2>Votre bibliothèque : </h2> 
-            <div id="wait"></div>
+        <div class="app">
+                <h1>Juke in the box</h1>
+                <div class="bibliotheque">
+                            <h2>Votre bibliotheque: {{titreBiblio}}</h2>
+                            
+                            <div class="biblio_pistes" v-for="piste in listMusiques">
+                                            <div class='piste'>
+                                                            <img class  ='img_piste' :src="piste.imagePiste" style="width : 150px"/>
+                                                            <p><span v-for="artiste in piste.artistes">{{artiste.prénom}} {{artiste.nom}} </span>- {{piste.nomPiste}} Genre : <span v-for="genre in piste.genres"> {{genre}}</span></p>
+                                                            <button class='add_button' v-on:click='deleteMusicBiblio(piste.idPiste)'> Retirer</button>
+                                            </div>
+                            </div>
+                    </div>
+            
+                
+            <!-- <div id="wait"></div> -->
         </div>
-    </div>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+ 
+    <script type="text/javascript" src="../js/token.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
     <script type="text/javascript" src="../js/jukeinthebox_contentbibliotheque.js"></script>
 </body>
 

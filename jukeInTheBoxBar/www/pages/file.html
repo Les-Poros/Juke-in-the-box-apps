@@ -5,7 +5,8 @@
 <head>
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport"
+                content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <meta charset="UTF-8">
         <meta http-equiv="refresh" content="15">
         <link rel="stylesheet" type="text/css" href="../css/jukeinthebox.css">
@@ -16,15 +17,25 @@
         <div class="app">
                 <h1>Juke in the box</h1>
                 <div class="file">
-                        <div id="wait"></div>
-                        <div class="file_piste">
-
-                        </div>
+                        <!--<div id="wait"></div>-->
+                        <section v-if="estVideFile">
+                                <div class='file_piste'>
+                                        <p>Musique dans la file : Aucune</p>
+                                </div>
+                        </section>
+                        <section v-else>
+                                <div class='file_piste'>
+                                        <p class='musique_file' v-for="musique in tabMusiques">{{musique}}</p>
+                                </div>
+                        </section>
 
                 </div>
         </div>
 
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+        <script src="../js/token.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
         <script type="text/javascript" src="../js/jukeinthebox_file.js"></script>
 </body>
 

@@ -27,7 +27,7 @@
                         <section>
                                 <div class='file_piste'>
 
-                                        <p class='musique_file' v-for="(musique,index) in listMusiques">
+                                        <p v-cloak class='musique_file' v-for="(musique,index) in listMusiques">
                                                 {{index+1}})
                                                <span v-for="(artiste,index) in musique.piste.artistes">
                                                        {{artiste.prénom}} {{artiste.nom}} 

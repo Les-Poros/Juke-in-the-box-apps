@@ -32,7 +32,7 @@ var content_biblio = new Vue({
         
         
         axios
-          .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/deleteFileBiblio", params)
+          .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/deleteMusicBiblio", params)
             .then(() => {
               let lien = window.location.toString().split("contentbiblio.html");
               window.location = lien[0] + 'contentbiblio.html';

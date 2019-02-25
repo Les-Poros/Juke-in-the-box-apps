@@ -16,39 +16,32 @@
 <body>
     <div v-cloak class="modal" v-bind:class="{ unshow : unshow }">
         <div class="modal-content">
-            <input type="search" v-model="token" type="text" class="" id="token"
-                placeholder="Entrer votre qrcode" />
+            <input type="search" v-model="token" type="text" class="" id="token" placeholder="Entrer votre qrcode" />
             <button v-on:click="disparait()">Valider</button>
         </div>
     </div>
     <div class="app">
         <h1>Juke in the box</h1>
         <div class="musique_en_cours">
-            <section v-if="estVide">
+            <section v-if="musique=='aucune'">
                 <div class='info_musique'>
                     <p>Musique dans la file : Aucune</p>
                 </div>
             </section>
             <section v-cloak v-else>
-                <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
+                <img class='img_musique' v-bind:src="musique.imagePiste" style='width:150px' />
                 <div class='info_musique'>
                     <h2>Titre</h2>
-                    <p>{{nomPiste}}</p>
+                    <p>{{musique.nomPiste}}</p>
                     <hr />
                     <h2>Artiste</h2>
-                    <p v-if='aPlusieursArtistes'>
-                        <span v-for="artiste in artistesPiste">{{artiste.prénom}} {{artiste.nom}}<br /></span>
-                    </p>
-                    <p v-else>
-                        {{prenomArtiste}} {{nomArtiste}}<br />
+                    <p>
+                        <span v-for="artiste in musique.artistes">{{artiste.prénom}} {{artiste.nom}}<br /></span>
                     </p>
                     <hr />
                     <h2>Album</h2><br />
-                    <p v-if='aPlusieursAlbums'>
-                        <span v-for="album in albumsPiste">{{album.nomAlbum}}<br /></span>
-                    </p>
-                    <p v-else>
-                        {{nomAlbum}}<br />
+                    <p>
+                        <span v-for="album in musique.albums">{{album.nomAlbum}}<br /></span>
                     </p>
                 </div>
             </section>
@@ -77,7 +70,7 @@
     </div>
 
     <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
-   
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
     <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
     <script src="../js/token.js"></script>

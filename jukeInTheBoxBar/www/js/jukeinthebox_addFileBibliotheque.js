@@ -10,7 +10,7 @@ var bibliotheque = new Vue({
         .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
         params: {
           "piste":this.search,
-          "bartender":token
+         
         }
       })
         .then((response) => {

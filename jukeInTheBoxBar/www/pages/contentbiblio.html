@@ -12,37 +12,24 @@
 </head>
 
 <body>
-    <div class="app">
-        <h1>Juke in the box</h1>
-        <div class="bibliotheque">
-            <h2>Votre bibliotheque: {{titreBiblio}}</h2>
-           
-                  
-                    <div class='info_musique'>       
-                        <div class='piste'> 
-                            <!-- On affiche les pistes de la bibliothèque.   -->
-                                <p class='musique_file' v-html="tabPiste">
-                                        
-                                </p>                            
-                                <!-- <img class='img_musique' v-bind:src="imagePiste" style='width:150px' />
-                                <h2>Artiste : </h2>{{nomArtiste}}
-                                <h2>Titre : </h2>{{nomPiste}} -->
-                                <!-- <p v-if='aPlusieursArtistes' v-for="artiste in artistesPiste">
-                                   {{nomArtiste}}<br />
-                                </p>
-                                <p v-else>
-                                    {{prenomArtiste}} {{nomArtiste}}<br />
-                                </p> -->
-                                <!-- <h2>Album : </h2>{{albumPiste}}     
-                                <h2>Genre : </h2>{{genrePiste}}                        -->
-                            <!-- </p> -->
-
+        <div class="app">
+                <h1>Juke in the box</h1>
+                <div class="bibliotheque">
+                            <h2>Votre bibliotheque: {{titreBiblio}}</h2>
+                            
+                            <div class="biblio_pistes" v-for="piste in listMusiques">
+                                            <div class='piste'>
+                                                            <img class  ='img_piste' :src="piste.imagePiste" style="width : 150px"/>
+                                                            <p><span v-for="artiste in piste.artistes">{{artiste.prénom}} {{artiste.nom}} </span>- {{piste.nomPiste}} Genre : <span v-for="genre in piste.genres"> {{genre}}</span></p>
+                                                            <button class='add_button' v-on:click='deleteMusicBiblio(piste.idPiste)'> Retirer</button>
+                                            </div>
+                            </div>
                     </div>
-                    </div>
+            
                 
             <!-- <div id="wait"></div> -->
         </div>
-    </div>
+ 
     <script type="text/javascript" src="../js/token.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
     <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>

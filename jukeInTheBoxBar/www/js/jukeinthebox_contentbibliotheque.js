@@ -1,4 +1,4 @@
-var content_biblio = new Vue({
+var content = new Vue({
     el: '.bibliotheque',
     data: {
      titreBiblio : '',
@@ -6,11 +6,14 @@ var content_biblio = new Vue({
 
     },
     methods: {
+      start : function(){
+        this.getBiblio();
+      },
       getBiblio : function (){
         axios
         .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
           params: {
-            "bartender":token
+            "bartender":token.token
           }
         })
           .then((response) => {
@@ -28,15 +31,12 @@ var content_biblio = new Vue({
         
         const params = new URLSearchParams();
         params.append('id', idPiste);
-        params.append('bartender', token);
-        
+        params.append('bartender', token.token);
         
         axios
           .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/deleteMusicBiblio", params)
             .then(() => {
-              let lien = window.location.toString().split("contentbiblio.html");
-              window.location = lien[0] + 'contentbiblio.html';
-              window.alert('Votre musique a été supprimer de la Bibliothèque !');
+              this.getBiblio();
             });
             
         },
@@ -45,6 +45,5 @@ var content_biblio = new Vue({
     },
     
     created() {
-      this.getBiblio();
     }
   });

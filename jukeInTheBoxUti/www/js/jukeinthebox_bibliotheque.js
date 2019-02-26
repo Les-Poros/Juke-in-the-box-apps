@@ -1,26 +1,29 @@
-var bibliotheque = new Vue({
+var content = new Vue({
   el: '.app',
   data: {
     listMusiques: '',
-    search:""
+    search: ""
   },
   methods: {
-    getCatalogue : function (){
-      axios
-      .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
-        params: {
-          "piste":this.search,
-          "token":token
-        }
-      })
-      .then((response) => {
-        this.listMusiques = response["data"]["catalogue"]["pistes"];
-      });
+    start: function () {
+      this.getCatalogue();
     },
-    addFile : function(idPiste){
+    getCatalogue: function () {
+      axios
+        .get("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/catalogue", {
+          params: {
+            "piste": this.search,
+            "token": token.token
+          }
+        })
+        .then((response) => {
+          this.listMusiques = response["data"]["catalogue"]["pistes"];
+        });
+    },
+    addFile: function (idPiste) {
       const params = new URLSearchParams();
       params.append('id', idPiste);
-      params.append('token', token);
+      params.append('token', token.token);
       axios
         .post("https://webetu.iutnc.univ-lorraine.fr/www/rimet2u/jukeinthebox/addfile", params)
         .then(() => {
@@ -30,8 +33,9 @@ var bibliotheque = new Vue({
     }
   },
   computed: {
+
   },
   created() {
-    this.getCatalogue();
+
   }
 });

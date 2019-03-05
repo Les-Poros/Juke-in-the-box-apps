@@ -11,17 +11,19 @@
     >
     <div class="bibliotheque">
       <div id="wait"></div>
-      <div v-cloak class="biblio_pistes" v-for="piste in listMusiques">
+      <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
         <div class="piste">
           <img class="img_piste" :src="piste.imagePiste">
           <p>
-            <span v-for="artiste in piste.artistes">{{artiste.prénom}} {{artiste.nom}}</span>
+            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index"> <span
+                v-if="index !== 0"
+              >/</span>
+              {{artiste.prénom}} {{artiste.nom}}
+             
+            </span>
             - {{piste.nomPiste}}
           </p>
-          <button class="add_button" v-on:click="addFile(piste.idPiste)">
-            Ajouter à la
-            file
-          </button>
+          <button class="add_button" v-on:click="addFile(piste.idPiste)">Ajouter à la file</button>
         </div>
       </div>
     </div>
@@ -32,45 +34,37 @@
 import axios from "axios";
 
 export default {
+  props:['url'],
   data() {
     return { listMusiques: "", search: "" };
   },
   methods: {
     //retourne le catalogue du jukebox
     getCatalogue: function() {
-        //si le token est valide alors on effectue la requete
-      //sinon on redemande un token valide (cf tokenValide)
-      if (this.$parent.tokenValide()) {
         axios
-          .get(this.$parent.url + "catalogue", {
+          .get(this.url + "catalogue", {
             params: {
               piste: this.search,
-              token: this.$parent.token
+              token: localStorage.token
             }
           })
           .then(response => {
             this.listMusiques = response["data"]["catalogue"]["pistes"];
           });
-      } else {
-        listMusiques = "";
-      }
+      
     },
      //ajoute une musique du catalogue dans la file du jukebox
     addFile: function(idPiste) {
-        //si le token est valide alors on effectue la requete
-      //sinon on redemande un token valide (cf tokenValide)
-      if (this.$parent.tokenValide()) {
+
         const params = new URLSearchParams();
         params.append("id", idPiste);
-        params.append("token", this.$parent.token);
-        axios.post(this.$parent.url + "addfile", params).then(() => {
-          let lien = window.location.toString().split("bibliotheque");
-          window.location = lien[0] + "accueil";
+        params.append("token", localStorage.token);
+        axios.post(this.url + "addfile", params).then(() => {
+          this.$router.push("/");
         });
-      }
+      
     }
   },
-  computed: {},
   created() {
     this.getCatalogue();
   }

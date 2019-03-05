@@ -7,13 +7,7 @@
 
 <body>
   <div class="app">
-      <div v-cloak class="modal" v-bind:class="{ unshow : unshow }">
-          <div class="modal-content">
-              <input type="search" v-model="token" type="text" class="" id="token" placeholder="Entrer votre qrcode" />
-              <button v-on:click="entrerToken()">Valider</button>
-          </div>
-      </div>
-    <router-view></router-view>
+    <router-view :url="url"></router-view>
   </div>
   <script src="dist/build.js"></script>
 </body>

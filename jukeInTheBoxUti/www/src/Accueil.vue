@@ -2,7 +2,7 @@
   <div>
     <h1>Juke in the box</h1>
     <div class="musique_en_cours">
-      <section v-if="musique=='aucune'">
+      <section v-if="musique==='aucune'">
         <div class="info_musique">
           <p>Musique dans la file : Aucune</p>
         </div>
@@ -15,7 +15,7 @@
           <hr>
           <h2>Artiste</h2>
           <p>
-            <span v-for="artiste in musique.artistes">
+            <span v-for="(artiste,index) in musique.artistes" v-bind:key="index">
               {{artiste.prénom}} {{artiste.nom}}
               <br>
             </span>
@@ -24,7 +24,7 @@
           <h2>Album</h2>
           <br>
           <p>
-            <span v-for="album in musique.albums">
+            <span v-for="(album,index) in musique.albums" v-bind:key="index">
               {{album.nomAlbum}}
               <br>
             </span>
@@ -50,6 +50,7 @@
 import axios from "axios";
 export default {
   name: "accueil",
+  props:['url'],
   data() {
     return {
       musique: "aucune",
@@ -64,14 +65,11 @@ export default {
   methods: {
     //retourne la premiere piste du jukebox
     getFirstFile: function() {
-      //si le token est valide alors on effectue la requete
-      //sinon on coupe la boucle de recuperation de données et on redemande un token valide (cf tokenValide)
-      if (this.$parent.tokenValide()) {
         axios
-          .get(this.$parent.url + "File", {
+          .get(this.url + "File", {
             context: document.body,
             params: {
-              token: this.$parent.token,
+              token: localStorage.token,
               first: true
             }
           })
@@ -82,10 +80,6 @@ export default {
               this.musique = "aucune";
             }
           });
-      } else {
-        this.musique = "aucune";
-        clearInterval(this.boucle);
-      }
     }
   },
   created() {

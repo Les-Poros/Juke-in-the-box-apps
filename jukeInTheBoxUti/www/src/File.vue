@@ -4,13 +4,13 @@
     <div class="file">
       <section>
         <div class="file_piste">
-          <p v-cloak class="musique_file" v-for="(musique,index) in listMusiques">
+          <p v-cloak class="musique_file" v-for="(musique,index) in listMusiques" v-bind:key="index">
             {{index+1}})
-            <span v-for="(artiste,index) in musique.piste.artistes">
-              {{artiste.prénom}} {{artiste.nom}}
-              <span
-                v-if="index != Object.keys(musique.piste.artistes).length - 1"
+            <span v-for="(artiste,index) in musique.piste.artistes" v-bind:key="index">
+               <span
+                v-if="index !== 0"
               >/</span>
+              {{artiste.prénom}} {{artiste.nom}}
             </span>
             - {{musique.piste.nomPiste}}
           </p>
@@ -24,6 +24,7 @@
 import axios from "axios";
 
 export default {
+  props:['url'],
   name: "accueil",
   data() {
     return { listMusiques: [], boucle: "" };
@@ -36,26 +37,23 @@ export default {
   methods: {
       //retourne la file du jukebox
     getFile: function() {
-     //si le token est valide alors on effectue la requete
-      //sinon on coupe la boucle de recuperation de données et on redemande un token valide (cf tokenValide)
-      if (this.$parent.tokenValide()) {
         axios
-          .get(this.$parent.url + "File", {
+          .get(this.url + "File", {
             context: document.body,
             params: {
-              token: this.$parent.token
+              token: localStorage.token
             }
           })
           .then(response => {
             this.listMusiques = response["data"]["pistes"];
           });
-      } else {
-        this.listMusiques = [];
-        clearInterval(this.boucle);
-      }
     }
   },
-  computed: {},
+  computed:{
+    lastFor : function(list){
+      return 
+    }
+  },
   created() {
     this.getFile();
     // boucle de recuperation de données

@@ -25,7 +25,7 @@ Membres du projet :
     - npm run build
     - cd ..
     - cordova run android --device
-    
+
 # Si l'on souhaite lancer l'application client sur un téléphone branché à votre ordinateur
 
 * Lancer un terminal dans le dossier cloné puis faire :
@@ -34,3 +34,8 @@ Membres du projet :
     - npm run build
     - cd ..
     - cordova run android --device
+
+# Si l'on souhaite lancer une des application en mode développement sur votre navigateur :
+    - cd jukeInTheBoxUti/www ou cd jukeInTheBoxUti/www
+    - npm install
+    - npm run dev

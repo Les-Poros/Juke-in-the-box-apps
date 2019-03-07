@@ -12,7 +12,6 @@
 <script>
 export default {
   name: "login",
-  params: ["nextUrl"],
   props: ["nextUrl"],
   data() {
     return {

@@ -4,12 +4,15 @@
     <div class="file">
       <section>
         <div class="file_piste">
-          <p v-cloak class="musique_file" v-for="(musique,index) in listMusiques" v-bind:key="index">
+          <p
+            v-cloak
+            class="musique_file"
+            v-for="(musique,index) in listMusiques"
+            v-bind:key="index"
+          >
             {{index+1}})
             <span v-for="(artiste,index) in musique.piste.artistes" v-bind:key="index">
-               <span
-                v-if="index !== 0"
-              >/</span>
+              <span v-if="index !== 0">/</span>
               {{artiste.prénom}} {{artiste.nom}}
             </span>
             - {{musique.piste.nomPiste}}
@@ -24,39 +27,31 @@
 import axios from "axios";
 
 export default {
-  props:['url'],
+  props: ["apiurl"],
   name: "accueil",
   data() {
     return { listMusiques: [], boucle: "" };
   },
-  //avant de changer de route, on supprime notre boucle de recuperation de données
   beforeRouteLeave(to, from, next) {
     clearInterval(this.boucle);
     next();
   },
   methods: {
-      //retourne la file du jukebox
     getFile: function() {
-        axios
-          .get(this.url + "File", {
-            context: document.body,
-            params: {
-              bartender: localStorage.token
-            }
-          })
-          .then(response => {
-            this.listMusiques = response["data"]["pistes"];
-          });
-    }
-  },
-  computed:{
-    lastFor : function(list){
-      return 
+      axios
+        .get(this.apiurl + "File", {
+          context: document.body,
+          params: {
+            bartender: localStorage.token
+          }
+        })
+        .then(response => {
+          this.listMusiques = response["data"]["pistes"];
+        });
     }
   },
   created() {
     this.getFile();
-    // boucle de recuperation de données
     this.boucle = setInterval(() => {
       this.getFile();
     }, 15000);

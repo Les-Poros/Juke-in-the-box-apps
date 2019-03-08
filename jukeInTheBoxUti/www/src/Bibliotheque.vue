@@ -15,11 +15,11 @@
         <div class="piste">
           <img class="img_piste" :src="piste.imagePiste">
           <p>
-            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index"> <span
-                v-if="index !== 0"
-              >/</span>
+            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
+              <span v-if="index !== 0">/</span>
+
+              
               {{artiste.prénom}} {{artiste.nom}}
-             
             </span>
             - {{piste.nomPiste}}
           </p>
@@ -34,35 +34,30 @@
 import axios from "axios";
 
 export default {
-  props:['url'],
+  props: ["apiurl"],
   data() {
     return { listMusiques: "", search: "" };
   },
   methods: {
-    //retourne le catalogue du jukebox
     getCatalogue: function() {
-        axios
-          .get(this.url + "catalogue", {
-            params: {
-              piste: this.search,
-              token: localStorage.token
-            }
-          })
-          .then(response => {
-            this.listMusiques = response["data"]["catalogue"]["pistes"];
-          });
-      
-    },
-     //ajoute une musique du catalogue dans la file du jukebox
-    addFile: function(idPiste) {
-
-        const params = new URLSearchParams();
-        params.append("id", idPiste);
-        params.append("token", localStorage.token);
-        axios.post(this.url + "addfile", params).then(() => {
-          this.$router.push("/");
+      axios
+        .get(this.apiurl + "catalogue", {
+          params: {
+            piste: this.search,
+            token: localStorage.token
+          }
+        })
+        .then(response => {
+          this.listMusiques = response["data"]["catalogue"]["pistes"];
         });
-      
+    },
+    addFile: function(idPiste) {
+      const params = new URLSearchParams();
+      params.append("id", idPiste);
+      params.append("token", localStorage.token);
+      axios.post(this.apiurl + "addfile", params).then(() => {
+        this.$router.push("/");
+      });
     }
   },
   created() {

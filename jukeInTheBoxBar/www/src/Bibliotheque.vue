@@ -1,51 +1,17 @@
-<template>
-  <div>
-    <h1>Juke in the box</h1>
-    <input
-      v-model="search"
-      v-on:input="getCatalogue()"
-      type="text"
-      class="barre"
-      id="search"
-      placeholder="rechercher"
-    >
-    <div class="bibliotheque">
-      <div id="wait"></div>
-      <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
-        <div class="piste">
-          <img class="img_piste" :src="piste.imagePiste">
-          <p>
-            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
-              <span v-if="index !== 0">/</span>
-
-              
-              {{artiste.prénom}} {{artiste.nom}}
-            </span>
-            - {{piste.nomPiste}}
-          </p>
-          <button
-            class="add_button"
-            v-on:click="deleteMusicBiblio(piste.idPiste)"
-          >Supprimer de la bibliotheque</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import axios from "axios";
-
+import template from "./templates/BiblioTemplate.js";
 export default {
-  props: ["url"],
+  name: "biblio",
+  template: template.template,
+  props: ["apiurl"],
   data() {
     return { listMusiques: "", search: "" };
   },
   methods: {
-    //retourne la catalogue du jukebox
     getCatalogue: function() {
       axios
-        .get(this.url + "catalogue", {
+        .get(this.apiurl + "catalogue", {
           params: {
             piste: this.search,
             bartender: localStorage.token
@@ -55,12 +21,11 @@ export default {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
         });
     },
-    //supprime une piste de la catalogue du jukebox
     deleteMusicBiblio: function(idPiste) {
       const params = new URLSearchParams();
       params.append("id", idPiste);
       params.append("bartender", localStorage.token);
-      axios.post(this.url + "deleteMusicBiblio", params).then(() => {
+      axios.post(this.apiurl + "deleteMusicBiblio", params).then(() => {
         this.getCatalogue();
       });
     }

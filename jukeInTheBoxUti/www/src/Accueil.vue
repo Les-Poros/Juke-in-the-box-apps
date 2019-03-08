@@ -50,41 +50,38 @@
 import axios from "axios";
 export default {
   name: "accueil",
-  props:['url'],
+  props: ["apiurl"],
   data() {
     return {
       musique: "aucune",
       boucle: ""
     };
   },
-  //avant de changer de route, on supprime notre boucle de recuperation de données
   beforeRouteLeave(to, from, next) {
     clearInterval(this.boucle);
     next();
   },
   methods: {
-    //retourne la premiere piste du jukebox
     getFirstFile: function() {
-        axios
-          .get(this.url + "File", {
-            context: document.body,
-            params: {
-              token: localStorage.token,
-              first: true
-            }
-          })
-          .then(response => {
-            if (response.data.pistes.length > 0) {
-              this.musique = response.data.pistes[0].piste;
-            } else {
-              this.musique = "aucune";
-            }
-          });
+      axios
+        .get(this.apiurl + "File", {
+          context: document.body,
+          params: {
+            token: localStorage.token,
+            first: true
+          }
+        })
+        .then(response => {
+          if (response.data.pistes.length > 0) {
+            this.musique = response.data.pistes[0].piste;
+          } else {
+            this.musique = "aucune";
+          }
+        });
     }
   },
   created() {
     this.getFirstFile();
-    // boucle de recuperation de données
     this.boucle = setInterval(() => {
       this.getFirstFile();
     }, 15000);

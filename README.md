@@ -17,14 +17,25 @@ Membres du projet :
     - via SSH : git clone git@github.com:Les-Poros/Juke-in-the-box-apps.git
     - via HTTPS : git clone https://github.com/Les-Poros/Juke-in-the-box-apps.git
     
-# Si l'on souhaite lancer l'application barman sur un téléphone branché à notre ordinateur
+# Si l'on souhaite lancer l'application barman sur un téléphone branché à votre ordinateur
 
 * Lancer un terminal dans le dossier cloné puis faire :
-    - cd jukeInTheBoxBar
+    - cd jukeInTheBoxBar/www
+    - npm install
+    - npm run build
+    - cd ..
     - cordova run android --device
-    
-# Si l'on souhaite lancer l'application client sur un téléphone branché à notre ordinateur
+
+# Si l'on souhaite lancer l'application client sur un téléphone branché à votre ordinateur
 
 * Lancer un terminal dans le dossier cloné puis faire :
-    - cd jukeInTheBoxUti
+    - cd jukeInTheBoxUti/www
+    - npm install
+    - npm run build
+    - cd ..
     - cordova run android --device
+
+# Si l'on souhaite lancer une des application en mode développement sur votre navigateur :
+    - cd jukeInTheBoxUti/www ou cd jukeInTheBoxUti/www
+    - npm install
+    - npm run dev

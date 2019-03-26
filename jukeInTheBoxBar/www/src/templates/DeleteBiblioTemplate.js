@@ -21,8 +21,8 @@
       </p>
       <button
         class="add_button"
-        v-on:click="addMusicBiblio(piste.idPiste)"
-      >Ajouter à votre bibliotheque</button>
+        v-on:click="deleteMusicBiblio(piste.idPiste)"
+      >Supprimer de votre Bibliothèque</button>
     </div>
   </div>
 </div>

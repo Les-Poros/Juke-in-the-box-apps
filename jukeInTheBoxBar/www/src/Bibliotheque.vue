@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import template from "./templates/BiblioTemplate.js";
+import template from "./templates/DeleteBiblioTemplate.js";
 export default {
   name: "biblio",
   template: template.template,
@@ -19,6 +19,7 @@ export default {
         })
         .then(response => {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
+          console.log(this.listMusiques);
         });
     },
     deleteMusicBiblio: function(idPiste) {

@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import template from "./templates/BiblioTemplate.js";
+import template from "./templates/AddBiblioTemplate.js";
 export default {
   name: "addBiblio",
   props: ["apiurl"],

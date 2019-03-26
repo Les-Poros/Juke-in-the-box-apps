@@ -12,18 +12,15 @@
 export default {
   name: "login",
   props: ["nextUrl"],
-  data() {
-    return {
-      token: ""
-    };
-  },
   methods: {
     scan: function() {
+      let self=this;
       cordova.plugins.barcodeScanner.scan(
         function(result) {
-          alert(
-              result.text
-          );
+          localStorage.token = result.text;
+          if (self.$route.params.nextUrl)
+            self.$router.push(self.$route.params.nextUrl);
+          else self.$router.push("/");
         },
         function(error) {
           alert("Scanning failed: " + error);

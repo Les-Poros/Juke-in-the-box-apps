@@ -75,7 +75,21 @@ export default {
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {
-            this.musique = "aucune";
+            axios
+              .get(this.apiurl + "validateJukebox", {
+                context: document.body,
+                params: {
+                  token: localStorage.token
+                }
+              })
+              .then(response => {
+                if (response.data.validate) this.musique = "aucune";
+                else
+                this.$router.push({
+                    name: "Login",
+                    params: { nextUrl: this.$route.fullPath }
+                  });
+              });
           }
         });
     }

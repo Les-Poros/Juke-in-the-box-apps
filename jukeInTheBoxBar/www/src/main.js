@@ -6,6 +6,8 @@ import addBiblio from "./addBiblio.vue";
 import login from "./Login.vue";
 import menuBiblio from "./menuBiblio.vue";
 
+import axios from "axios";
+
 const routes = [
   { name: "Login", path: "/login", component: login },
   { name: "Accueil", path: "/", component: accueil },
@@ -22,16 +24,31 @@ const router = new VueRouter({
 //Avant chaque entrée de page on regarde si le token est valide, si non on redirige vers une page de "login"
 router.beforeEach((to, from, next) => {
   if (
-    to.matched.some(record => record.path !== "/login") &&
-    localStorage.token == null
+    to.matched.some(record => record.path !== "/login")
   ) {
+    if(localStorage.token == null)
     next({
       name: "Login",
       params: { nextUrl: to.fullPath }
     });
-  } else {
-    next();
+   else {
+    axios.get(conf.apiUrl+"validateJukebox",{
+      context: document.body,
+      params: {
+        bartender: localStorage.token
+      }
+    }).then(response=> {
+      if(response.data.validate)
+      next()
+      else
+      next({
+        name: "Login",
+        params: { nextUrl: to.fullPath }
+      });
+    })
   }
+  }
+  else next();
 });
 
 const app = new Vue({

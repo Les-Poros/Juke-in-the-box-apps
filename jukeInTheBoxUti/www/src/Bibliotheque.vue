@@ -48,7 +48,25 @@ export default {
           }
         })
         .then(response => {
-          this.listMusiques = response["data"]["catalogue"]["pistes"];
+          if (response["data"]["catalogue"]["pistes"].length > 0) {
+           this.listMusiques = response["data"]["catalogue"]["pistes"];
+          } else {
+            axios
+              .get(this.apiurl + "validateJukebox", {
+                context: document.body,
+                params: {
+                  token: localStorage.token
+                }
+              })
+              .then(response => {
+                if (response.data.validate) this.listMusiques="";
+                else
+                this.$router.push({
+                    name: "Login",
+                    params: { nextUrl: this.$route.fullPath }
+                  });
+              });
+          } 
         });
     },
     addFile: function(idPiste) {

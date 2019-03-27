@@ -1,13 +1,7 @@
 <template>
  <div>
-<input
-  v-model="search"
-  v-on:input="getCatalogue()"
-  type="text"
-  class="barre"
-  id="search"
-  placeholder="rechercher"
->
+ <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+  <button @click="getCatalogue()" :disabled="attente">rechercher</button>
 <div class="bibliotheque">
   <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
     <div class="piste">
@@ -35,10 +29,11 @@ export default {
   name: "biblio",
   props: ["apiurl"],
   data() {
-    return { listMusiques: "", search: "" };
+    return { listMusiques: "", search: "" ,attente:false};
   },
   methods: {
     getCatalogue: function() {
+      this.attente=true
       axios
         .get(this.apiurl + "catalogue", {
           params: {
@@ -48,7 +43,7 @@ export default {
         })
         .then(response => {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
-          console.log(this.listMusiques);
+          this.attente=false;
         });
     },
     deleteMusicBiblio: function(idPiste) {

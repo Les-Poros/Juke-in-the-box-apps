@@ -1,14 +1,8 @@
 <template>
   <div>
     <h1>Juke in the box</h1>
-    <input
-      v-model="search"
-      v-on:input="getCatalogue()"
-      type="text"
-      class="barre"
-      id="search"
-      placeholder="rechercher"
-    >
+    <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+    <button @click="getCatalogue()" :disabled="attente">rechercher</button>
     <div class="bibliotheque">
       <div id="wait"></div>
       <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
@@ -17,8 +11,6 @@
           <p>
             <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
               <span v-if="index !== 0">/</span>
-
-              
               {{artiste.prénom}} {{artiste.nom}}
             </span>
             - {{piste.nomPiste}}
@@ -36,10 +28,11 @@ import axios from "axios";
 export default {
   props: ["apiurl"],
   data() {
-    return { listMusiques: "", search: "" };
+    return { listMusiques: "", search: "", attente: false };
   },
   methods: {
     getCatalogue: function() {
+      this.attente = true;
       axios
         .get(this.apiurl + "catalogue", {
           params: {
@@ -48,9 +41,9 @@ export default {
           }
         })
         .then(response => {
-
+          this.attente = false;
           if (response["data"]["catalogue"]["pistes"].length > 0) {
-           this.listMusiques = response["data"]["catalogue"]["pistes"];
+            this.listMusiques = response["data"]["catalogue"]["pistes"];
           } else {
             axios
               .get(this.apiurl + "validateJukebox", {
@@ -60,15 +53,14 @@ export default {
                 }
               })
               .then(response => {
-                if (response.data.validate) this.listMusiques="";
+                if (response.data.validate) this.listMusiques = "";
                 else
-                this.$router.push({
+                  this.$router.push({
                     name: "Login",
                     params: { nextUrl: this.$route.fullPath }
                   });
               });
-          } 
-
+          }
         });
     },
     addFile: function(idPiste) {

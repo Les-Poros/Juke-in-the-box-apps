@@ -57,7 +57,7 @@ export default {
       boucle: ""
     };
   },
-  beforeRouteLeave(to, from, next) {
+   beforeRouteLeave(to, from, next) {
     clearInterval(this.boucle);
     next();
   },
@@ -67,11 +67,12 @@ export default {
         .get(this.apiurl + "File", {
           context: document.body,
           params: {
-            token: localStorage.token,
+            bartender: localStorage.token,
             first: true
           }
         })
         .then(response => {
+          console.log(response)
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {

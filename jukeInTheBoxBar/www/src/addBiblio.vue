@@ -20,6 +20,7 @@ export default {
         })
         .then(response => {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
+          console.log(this.search);
         });
     },
     addMusicBiblio: function(idPiste) {

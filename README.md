@@ -10,6 +10,7 @@ Membres du projet :
 # Prérequis :
 
 * cordova
+* plugin : cordova plugins add phonegap-plugin-barcodescanner
 
 # Pour récupérer l'application barman et l'application client
 
@@ -39,3 +40,4 @@ Membres du projet :
     - cd jukeInTheBoxUti/www ou cd jukeInTheBoxUti/www
     - npm install
     - npm run dev
+    - il faudra modifier manuelement le token dans votre localstorage

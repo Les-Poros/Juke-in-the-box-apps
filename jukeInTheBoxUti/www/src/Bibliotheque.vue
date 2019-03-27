@@ -48,6 +48,7 @@ export default {
           }
         })
         .then(response => {
+
           if (response["data"]["catalogue"]["pistes"].length > 0) {
            this.listMusiques = response["data"]["catalogue"]["pistes"];
           } else {
@@ -67,6 +68,7 @@ export default {
                   });
               });
           } 
+
         });
     },
     addFile: function(idPiste) {

@@ -1,17 +1,9 @@
 <template>
   <div v-cloak class="modal">
     <div class="modal-content">
-      <p class="white">Veuillez entrer votre token (qrcode)</p>
+      <p class="white">Veuillez scannez le qrcode du jukebox</p>
       <br>
-      <input
-        type="search"
-        v-model="token"
-        class
-        id="token"
-        placeholder="Entrer votre qrcode"
-        v-on:keyup.enter="entrerToken()"
-      >
-      <button v-on:click="entrerToken()">Valider</button>
+      <button v-on:click="scan()">Scanner</button>
     </div>
   </div>
 </template>
@@ -20,22 +12,20 @@
 export default {
   name: "login",
   props: ["nextUrl"],
-  data() {
-    return {
-      token: ""
-    };
-  },
   methods: {
-    entrerToken: function() {
-      localStorage.token = this.token;
-      if (this.$route.params.nextUrl)
-        this.$router.push(this.$route.params.nextUrl);
-      else this.$router.push("/");
-    }
-  },
-  created() {
-    if (localStorage.token != null) {
-      this.$router.push("/");
+    scan: function() {
+      let self=this;
+      cordova.plugins.barcodeScanner.scan(
+        function(result) {
+          localStorage.token = result.text;
+          if (self.$route.params.nextUrl)
+            self.$router.push(self.$route.params.nextUrl);
+          else self.$router.push("/");
+        },
+        function(error) {
+          alert("Scanning failed: " + error);
+        }
+      );
     }
   }
 };

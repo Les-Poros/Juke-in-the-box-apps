@@ -71,6 +71,7 @@ export default {
           }
         })
         .then(response => {
+          console.log(response)
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {

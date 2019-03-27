@@ -11,26 +11,40 @@
         placeholder="Entrer votre qrcode"
         v-on:keyup.enter="entrerToken()"
       >
+      <p v-if="!saisie" class="white">Se token n'existe pas</p>
       <button v-on:click="entrerToken()">Valider</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios"
 export default {
   name: "login",
-  props: ["nextUrl"],
+  props: ["nextUrl","apiurl"],
   data() {
     return {
-      token: ""
+      token: "",
+      saisie: true
     };
   },
   methods: {
     entrerToken: function() {
       localStorage.token = this.token;
-      if (this.$route.params.nextUrl)
-        this.$router.push(this.$route.params.nextUrl);
-      else this.$router.push("/");
+      axios
+        .get(this.apiurl + "validateJukebox", {
+          context: document.body,
+          params: {
+            bartender: localStorage.token
+          }
+        })
+        .then(response => {
+          if (response.data.validate) {
+            if (this.$route.params.nextUrl)
+              this.$router.push(this.$route.params.nextUrl);
+            else this.$router.push("/");
+          } else this.saisie = false;
+        });
     }
   },
   created() {

@@ -77,13 +77,13 @@ export default {
 <style>
 table {
   width: 100%;
-  
+  overflow: hidden;
   
 }
 
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 8px; 
 }
 
 tr:nth-child(even){background-color: #dbdada}

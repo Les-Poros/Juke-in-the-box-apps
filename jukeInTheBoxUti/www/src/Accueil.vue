@@ -67,7 +67,7 @@ export default {
         .get(this.apiurl + "File", {
           context: document.body,
           params: {
-            bartender: localStorage.token,
+            token: localStorage.token,
             first: true
           }
         })

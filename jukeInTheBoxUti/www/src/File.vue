@@ -79,7 +79,7 @@ export default {
 <style>
 table {
   width: 100%;
-  
+  overflow: hidden;
   
 }
 

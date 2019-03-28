@@ -1,7 +1,5 @@
 <template>
   <div>
-
-    <h1>Juke in the box</h1>
     <ul class="navigation">
       <router-link to="/file">
     <li><button >Voir le contenu de la file</button></li>

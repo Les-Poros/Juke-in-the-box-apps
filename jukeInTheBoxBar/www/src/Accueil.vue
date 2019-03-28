@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <h1>Juke in the box</h1>
     <ul class="navigation">
       <router-link to="/file">
@@ -10,6 +11,7 @@
       </router-link>
   
   </ul>
+
     <div class="musique_en_cours">
       <section v-if="musique==='aucune'">
         <div class="info_musique">
@@ -72,7 +74,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response)
+          (response)
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {

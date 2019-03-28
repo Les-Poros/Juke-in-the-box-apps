@@ -1,7 +1,9 @@
 <template>
  <div>
  <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-  <button @click="getCatalogue()" :disabled="attente">rechercher</button>
+  <button @click="$router.push({
+        query: { page: 0, size:$route.query.size }
+      });" :disabled="attente">rechercher</button>
 <div class="bibliotheque">
   <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
     <div class="piste">
@@ -13,20 +15,25 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <img src="./assets/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
+      <img src="../images/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
     </div>
   </div>
 </div>
+    <pagination v-if="pagination" :pagination="pagination"></pagination>
 </div>
 </template>
 
 <script>
 import axios from "axios";
+import pagination from "./Pagination.vue";
 export default {
   name: "biblio",
-  props: ["apiurl"],
+  props: ["apiurl"],  
+  components: {
+    pagination
+  },
   data() {
-    return { listMusiques: "", search: "" ,attente:false};
+    return { listMusiques: "", search: "" ,attente:false,pagination:""};
   },
   methods: {
     getCatalogue: function() {
@@ -35,11 +42,14 @@ export default {
         .get(this.apiurl + "catalogue", {
           params: {
             piste: this.search,
-            bartender: localStorage.token
+            bartender: localStorage.token,
+            page: this.$route.query.page,
+            size: this.$route.query.size
           }
         })
         .then(response => {
           this.listMusiques = response["data"]["catalogue"]["pistes"];
+          this.pagination = response["data"]["catalogue"]["pagination"];
           this.attente=false;
         });
     },
@@ -50,6 +60,11 @@ export default {
       axios.post(this.apiurl + "deleteMusicBiblio", params).then(() => {
         this.getCatalogue();
       });
+    }
+  },
+  watch: {
+    "$route.query"() {
+      this.getCatalogue();
     }
   },
   created() {

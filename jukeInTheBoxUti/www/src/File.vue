@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Juke in the box</h1>
     <div class="file">
        <table>
         <thead>

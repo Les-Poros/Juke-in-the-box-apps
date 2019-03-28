@@ -1,30 +1,43 @@
 <template>
   <div>
-    <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-    <button
-      @click="$router.push({
-        query: { page: 0, size:$route.query.size }
+    <div v-if="catalogue">
+      <h2>Ajouter des musiques a votre bibliotheque : {{catalogue.nomCatag}}</h2>
+      <br>
+      <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+      <button
+        v-on:click="
+         $router.push({
+        query: { page: 0,search:search,action:$route.query.action}
       });"
-      :disabled="attente"
-    >rechercher</button>
-    <div class="bibliotheque">
-      <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
-        <div class="piste">
-          <img class="img_piste" :src="piste.imagePiste">
-          <p>
-            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
-              <span v-if="index !== 0">/</span>
-              {{artiste.prénom}} {{artiste.nom}}
-            </span>
-            - {{piste.nomPiste}}
-          </p>
-          <button v-on:click="addMusicBiblio(piste.idPiste)">
-            <img src="../images/plus.png">
-          </button>
+        :disabled="attente"
+      >rechercher</button>
+      <div class="bibliotheque">
+        <p
+          style="text-align:right"
+        >{{catalogue.size* catalogue.pagination.act}}-{{catalogue.size*catalogue.pagination.act + catalogue.count}} sur {{catalogue.total}}</p>
+        <div
+          v-cloak
+          class="biblio_pistes"
+          v-for="(piste,index) in catalogue.pistes"
+          v-bind:key="index"
+        >
+          <div class="piste">
+            <img class="img_piste" :src="piste.imagePiste">
+            <p>
+              <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
+                <span v-if="index !== 0">/</span>
+                {{artiste.prénom}} {{artiste.nom}}
+              </span>
+              - {{piste.nomPiste}}
+            </p>
+            <button v-on:click="addMusicBiblio(piste.idPiste)">
+              <img src="../images/plus.png">
+            </button>
+          </div>
         </div>
       </div>
+      <pagination :pagination="catalogue.pagination"></pagination>
     </div>
-    <pagination v-if="pagination" :pagination="pagination"></pagination>
   </div>
 </template>
 
@@ -38,7 +51,7 @@ export default {
     pagination
   },
   data() {
-    return { listMusiques: "", search: "", attente: false, pagination: "" };
+    return { catalogue: "", search:  this.$route.query.search ? this.$route.query.search : "", attente: false };
   },
   methods: {
     getCatalogue: function() {
@@ -50,13 +63,12 @@ export default {
             bartender: localStorage.token,
             addCatag: true,
             page: this.$route.query.page,
-            size: this.$route.query.size
+            size: 10
           }
         })
         .then(response => {
           this.attente = false;
-          this.listMusiques = response["data"]["catalogue"]["pistes"];
-          this.pagination = response["data"]["catalogue"]["pagination"];
+          this.catalogue = response["data"]["catalogue"];
         });
     },
     addMusicBiblio: function(idPiste) {
@@ -70,11 +82,12 @@ export default {
   },
   watch: {
     "$route.query"() {
+      this.search= this.$route.query.search ? this.$route.query.search : "";
       this.getCatalogue();
     }
   },
   created() {
-    this.getCatalogue();
+    this.getCatalogue()
   }
 };
 </script>

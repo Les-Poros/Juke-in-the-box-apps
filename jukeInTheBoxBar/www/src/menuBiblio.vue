@@ -1,13 +1,19 @@
 <template>
   <div class="">
   <ul class="navigation">
-  <li><button @click = "choix = 'biblio'">Voir Sa bibliotheque</button></li>
-  <li><button @click = "choix = 'ajouter'">Ajouter Une Musique</button></li>
-  <li><button @click = "choix = 'predef'">Bibliothèque Prédéfinie</button></li>
+  <li><button @click = "$router.push({
+        query: { page: 0,search:'',action:'biblio'}
+      });">Voir Sa bibliotheque</button></li>
+  <li><button @click = "$router.push({
+        query: { page: 0,search:'',action:'ajouter'}
+      });">Ajouter Une Musique</button></li>
+  <li><button @click = "$router.push({
+        query: { page: 0,search:'',action:'predef'}
+      });">Bibliothèque Prédéfinie</button></li>
   
 </ul>
-<bibliotheque v-if="choix=='biblio'" v-bind:apiurl="apiurl"> </bibliotheque>
-<ajouter v-if="choix=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
+<bibliotheque v-if="$route.query.action=='biblio'" v-bind:apiurl="apiurl"> </bibliotheque>
+<ajouter v-if="$route.query.action=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
   </div>
 </template>
 
@@ -21,15 +27,7 @@ export default {
     'bibliotheque' : biblio,
     'ajouter' : ajout,
   },
-  props: ["apiurl"],
-  data() {
-    return { choix : ""};
-  },
-  methods: {
-  },
-  created() {
-    
-  }
+  props: ["apiurl"]
 };
 </script>
 <style>

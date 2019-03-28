@@ -1,28 +1,40 @@
 <template>
- <div>
- <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-  <button @click="$router.push({
-        query: { page: 0, size:$route.query.size }
-      });" :disabled="attente">rechercher</button>
-<div class="bibliotheque">
-  <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
-    <div class="piste">
-      <img class="img_piste" :src="piste.imagePiste">
-      <p>
-        <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
-          <span v-if="index !== 0">/</span>
-          {{artiste.prénom}} {{artiste.nom}}
-        </span>
-        - {{piste.nomPiste}}
-      </p>
-       <button v-on:click="addFile(piste.idPiste)">
-            <img src="../images/plus.png">
-          </button>
+  <div>
+      <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+      <button
+        v-on:click="
+         $router.push({
+        query: { page: 0,search:search}
+      });"
+        :disabled="attente"
+      >rechercher</button>
+      <div class="bibliotheque" v-if="catalogue">
+        <p
+          style="text-align:right"
+        >{{catalogue.size* catalogue.pagination.act}}-{{catalogue.size*catalogue.pagination.act + catalogue.count}} sur {{catalogue.total}}</p>
+        <div
+          v-cloak
+          class="biblio_pistes"
+          v-for="(piste,index) in catalogue.pistes"
+          v-bind:key="index"
+        >
+          <div class="piste">
+            <img class="img_piste" :src="piste.imagePiste">
+            <p>
+              <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
+                <span v-if="index !== 0">/</span>
+                {{artiste.prénom}} {{artiste.nom}}
+              </span>
+              - {{piste.nomPiste}}
+            </p>
+            <button v-on:click="addFile(piste.idPiste)">
+              <img src="../images/plus.png">
+            </button>
+          </div>
+        </div>
+      <pagination :pagination="catalogue.pagination"></pagination>
+      </div>
     </div>
-  </div>
-</div>
-    <pagination v-if="pagination" :pagination="pagination"></pagination>
-</div>
 </template>
 
 <script>
@@ -30,12 +42,12 @@ import axios from "axios";
 import pagination from "./Pagination.vue";
 export default {
   name: "biblio",
-  props: ["apiurl"],  
+  props: ["apiurl"],
   components: {
     pagination
   },
   data() {
-    return { listMusiques: "", search: "" ,attente:false,pagination:""};
+    return { catalogue: "", search: this.$route.query.search ? this.$route.query.search : "", attente: false };
   },
   methods: {
     getCatalogue: function() {
@@ -46,14 +58,13 @@ export default {
             piste: this.search,
             token: localStorage.token,
             page: this.$route.query.page,
-            size: this.$route.query.size
+            size: 10
           }
         })
         .then(response => {
           this.attente = false;
           if (response["data"]["catalogue"]["pistes"].length > 0) {
-            this.listMusiques = response["data"]["catalogue"]["pistes"];
-          this.pagination = response["data"]["catalogue"]["pagination"];
+            this.catalogue = response["data"]["catalogue"];
           } else {
             axios
               .get(this.apiurl + "validateJukebox", {
@@ -63,8 +74,9 @@ export default {
                 }
               })
               .then(response => {
-                if (response.data.validate){ this.listMusiques = "";this.pagination=""}
-                else
+                if (response.data.validate) {
+                  this.catalogue = "";
+                } else
                   this.$router.push({
                     name: "Login",
                     params: { nextUrl: this.$route.fullPath }
@@ -84,6 +96,7 @@ export default {
   },
   watch: {
     "$route.query"() {
+      this.search= this.$route.query.search ? this.$route.query.search : "";
       this.getCatalogue();
     }
   },

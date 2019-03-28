@@ -1,13 +1,15 @@
 <head>
   <script src="node_modules/vue/dist/vue.min.js"></script>
   <script src="node_modules/vue-router/dist/vue-router.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./jukeinthebox.css">
-  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./jukeinthebox.css" />
+  <meta charset="UTF-8" />
 </head>
 
 <body>
   <div class="app">
+    <router-link to="/">
       <h1>Juke in the box</h1>
+    </router-link>
     <router-view :apiurl="apiUrl"></router-view>
   </div>
   <script src="./dist/build.js"></script>

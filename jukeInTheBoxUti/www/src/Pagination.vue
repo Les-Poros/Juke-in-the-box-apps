@@ -59,16 +59,11 @@
 export default {
   name: "pagination",
   props: ["pagination"],
-  data() {
-    return {
-      size: this.$route.query.size ? this.$route.query.size : 10
-    };
-  },
   methods: {
     //Permet de changer les parametres actuelle de la route en fonction de la page voulu et de la taille voulu
     pageSuivant: function(page) {
       this.$router.push({
-        query: { page: page, size: this.size }
+        query: { page: page, search:this.$route.query.search}
       });
     }
   }

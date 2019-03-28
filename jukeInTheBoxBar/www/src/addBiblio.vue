@@ -1,49 +1,60 @@
 <template>
-<div>
-
- <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-    <button @click="getCatalogue()" :disabled="attente">rechercher</button>
-<div class="bibliotheque">
-  <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
-    <div class="piste">
-      <img class="img_piste" :src="piste.imagePiste">
-      <p>
-        <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
-          <span v-if="index !== 0">/</span>
-          {{artiste.prénom}} {{artiste.nom}}
-        </span>
-        - {{piste.nomPiste}}
-      </p>
-      <img src="./assets/plus.png" v-on:click="addMusicBiblio(piste.idPiste)">
-     
+  <div>
+    <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+    <button
+      @click="$router.push({
+        query: { page: 0, size:$route.query.size }
+      });"
+      :disabled="attente"
+    >rechercher</button>
+    <div class="bibliotheque">
+      <div v-cloak class="biblio_pistes" v-for="(piste,index) in listMusiques" v-bind:key="index">
+        <div class="piste">
+          <img class="img_piste" :src="piste.imagePiste">
+          <p>
+            <span v-for="(artiste,index) in piste.artistes" v-bind:key="index">
+              <span v-if="index !== 0">/</span>
+              {{artiste.prénom}} {{artiste.nom}}
+            </span>
+            - {{piste.nomPiste}}
+          </p>
+          <img src="./assets/plus.png" v-on:click="addMusicBiblio(piste.idPiste)">
+        </div>
+      </div>
     </div>
+    <pagination v-if="pagination" :pagination="pagination"></pagination>
   </div>
-</div>
-</div>
 </template>
 
 <script>
 import axios from "axios";
+import pagination from "./Pagination.vue";
 export default {
   name: "addBiblio",
   props: ["apiurl"],
+  components: {
+    pagination
+  },
   data() {
-    return { listMusiques: "", search: "", attente:false };
+    return { listMusiques: "", search: "", attente: false, pagination: "" };
   },
   methods: {
     getCatalogue: function() {
-    this.attente=true;
+      this.attente = true;
       axios
         .get(this.apiurl + "catalogue", {
           params: {
             piste: this.search,
             bartender: localStorage.token,
-            addCatag: true
+            addCatag: true,
+            page: this.$route.query.page,
+            size: this.$route.query.size
           }
         })
         .then(response => {
-          this.attente=false;
+          this.attente = false;
           this.listMusiques = response["data"]["catalogue"]["pistes"];
+          this.pagination = response["data"]["catalogue"]["pagination"];
         });
     },
     addMusicBiblio: function(idPiste) {
@@ -53,6 +64,11 @@ export default {
       axios.post(this.apiurl + "addMusicBiblio", params).then(() => {
         this.getCatalogue();
       });
+    }
+  },
+  watch: {
+    "$route.query"() {
+      this.getCatalogue();
     }
   },
   created() {

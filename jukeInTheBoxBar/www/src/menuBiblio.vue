@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <h1>Juke in the box</h1>
   <ul class="navigation">
   <li><button @click = "choix = 'biblio'">Voir Sa bibliotheque</button></li>
   <li><button @click = "choix = 'ajouter'">Ajouter Une Musique</button></li>

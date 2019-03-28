@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Germania+One');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -80,18 +81,23 @@ body {
   }
 }
 @font-face {
+	font-family: 'TheBlacklist';
+	src: url('./TheBlacklist.eot');
+}
+@font-face {
   font-family: "MVBoli";
   src: url("../mvboli.ttf");
 }
 h1 {
-  font-size: 26px;
+  font-size: 68px;
   font-weight: normal;
-  font-family: "MVBoli";
+  font-family: 'Germania One', cursive;
   margin: 0px;
   overflow: visible;
   padding: 0px;
   text-align: center;
   padding-bottom: 20%;
+  color : white;
 }
 
 a {
@@ -102,9 +108,7 @@ a {
 .app {
   text-align: center;
 }
-.app h1 {
-  background-color: #DAE2FE;
-}
+
 
 .app .home_button {
   width: 90%;
@@ -127,12 +131,13 @@ h2 {
   text-align: center;
 }
 .app h1 {
-  background-color: #DAE2FE;
+  background-color: #2c4759;
+  
 }
 .app h1, .app .info_musique {
-  border: solid grey 1px;
+  /* border: solid grey 1px;
   border-radius: 5px;
-  margin: 5%;
+  margin: 5%; */
   padding-top: 5%;
   padding-bottom: 5%;
 }

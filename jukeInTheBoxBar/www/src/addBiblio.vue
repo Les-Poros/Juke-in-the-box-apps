@@ -14,10 +14,8 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <button
-        class="add_button"
-        v-on:click="addMusicBiblio(piste.idPiste)"
-      >Ajouter à votre Bibliothèque</button>
+      <img src="./assets/plus.png" v-on:click="addMusicBiblio(piste.idPiste)">
+     
     </div>
   </div>
 </div>

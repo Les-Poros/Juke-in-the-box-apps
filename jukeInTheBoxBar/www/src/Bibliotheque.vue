@@ -13,10 +13,7 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <button
-        class="add_button"
-        v-on:click="deleteMusicBiblio(piste.idPiste)"
-      >Supprimer de votre Bibliothèque</button>
+      <img src="./assets/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
     </div>
   </div>
 </div>

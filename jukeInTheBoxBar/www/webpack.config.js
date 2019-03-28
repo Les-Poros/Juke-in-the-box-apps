@@ -1,11 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
 
-module.exports = {
+let config = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: './dist/',
+    publicPath: '/dist/',
     filename: 'build.js'
   },
   module: {
@@ -56,7 +56,10 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
+module.exports = config;
+
 if (process.env.NODE_ENV === 'production') {
+  config.output.publicPath="./dist/"
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([

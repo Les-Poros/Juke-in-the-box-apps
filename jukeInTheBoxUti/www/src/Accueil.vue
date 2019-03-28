@@ -6,9 +6,9 @@
           <button>Voir le contenu de la file</button>
         </li>
       </router-link>
-      <router-link to="/menuBibliotheque">
+      <router-link to="/bibliotheque">
         <li>
-          <button>Gérer sa bibliotheque</button>
+          <button>Ajouter une musique</button>
         </li>
       </router-link>
     </ul>

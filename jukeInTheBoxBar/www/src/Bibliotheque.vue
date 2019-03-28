@@ -15,7 +15,9 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <img src="../images/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
+      <button  v-on:click="deleteMusicBiblio(piste.idPiste)">
+      <img src="../images/delete.png" > 
+      </button>
     </div>
   </div>
 </div>
@@ -76,6 +78,13 @@ export default {
 <style>
 .biblio_pistes {
   width: 95%;
+}
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
 }
 .piste {
   height: 100px;

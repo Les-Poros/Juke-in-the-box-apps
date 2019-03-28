@@ -18,7 +18,9 @@
             </span>
             - {{piste.nomPiste}}
           </p>
-          <img src="../images/plus.png" v-on:click="addMusicBiblio(piste.idPiste)">
+          <button v-on:click="addMusicBiblio(piste.idPiste)">
+            <img src="../images/plus.png">
+          </button>
         </div>
       </div>
     </div>
@@ -78,6 +80,13 @@ export default {
 </script>
 
 <style>
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+}
 .biblio_pistes {
   width: 95%;
 }

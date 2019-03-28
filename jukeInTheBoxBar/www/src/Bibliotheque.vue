@@ -15,7 +15,7 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <img src="./assets/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
+      <img src="../images/delete.png" v-on:click="deleteMusicBiblio(piste.idPiste)" > 
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@
         </span>
         - {{piste.nomPiste}}
       </p>
-      <img src="./assets/plus.png" v-on:click="addFile(piste.idPiste)" > 
+      <img src="../images/plus.png" v-on:click="addFile(piste.idPiste)" > 
     </div>
   </div>
 </div>

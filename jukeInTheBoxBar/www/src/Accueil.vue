@@ -2,13 +2,16 @@
   <div>
     <ul class="navigation">
       <router-link to="/file">
-    <li><button >Voir le contenu de la file</button></li>
+        <li>
+          <button>Voir le contenu de la file</button>
+        </li>
       </router-link>
       <router-link to="/menuBibliotheque">
-  <li><button>Gérer sa bibliotheque</button></li>
+        <li>
+          <button>Gérer sa bibliotheque</button>
+        </li>
       </router-link>
-  
-  </ul>
+    </ul>
 
     <div class="musique_en_cours">
       <section v-if="musique==='aucune'">
@@ -18,8 +21,8 @@
       </section>
       <section v-cloak v-else>
         <div class="info_musique">
-        <img class="img_musique" v-bind:src="musique.imagePiste" style="width:150px">
-        <BR/>
+          <img class="img_musique" v-bind:src="musique.imagePiste" style="width:150px">
+          <BR/>
           <h2>Titre</h2>
           <p>{{musique.nomPiste}}</p>
           <hr>
@@ -42,7 +45,6 @@
         </div>
       </section>
     </div>
-    
   </div>
 </template>
 
@@ -72,7 +74,7 @@ export default {
           }
         })
         .then(response => {
-          (response)
+          response;
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {
@@ -97,19 +99,16 @@ export default {
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
- 
 }
 .musique_en_cours section {
-  width: 50%;
-
+  width: 80%;
 }
 ul,
 li {
   list-style: none;
-  
 }
 
-ul{
+ul {
   margin-bottom: 10px;
 }
 
@@ -126,9 +125,8 @@ ul{
   color: white;
   font-weight: bold;
   cursor: pointer;
- 
-border: none;
-background: none;
-}
 
+  border: none;
+  background: none;
+}
 </style>

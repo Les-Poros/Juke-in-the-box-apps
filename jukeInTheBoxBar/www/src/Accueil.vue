@@ -1,6 +1,15 @@
 <template>
   <div>
     <h1>Juke in the box</h1>
+    <ul class="navigation">
+      <router-link to="/file">
+    <li><button >Voir le contenu de la file</button></li>
+      </router-link>
+      <router-link to="/menuBibliotheque">
+  <li><button>Gérer sa bibliotheque</button></li>
+      </router-link>
+  
+  </ul>
     <div class="musique_en_cours">
       <section v-if="musique==='aucune'">
         <div class="info_musique">
@@ -8,8 +17,9 @@
         </div>
       </section>
       <section v-cloak v-else>
-        <img class="img_musique" v-bind:src="musique.imagePiste" style="width:150px">
         <div class="info_musique">
+        <img class="img_musique" v-bind:src="musique.imagePiste" style="width:150px">
+        <BR/>
           <h2>Titre</h2>
           <p>{{musique.nomPiste}}</p>
           <hr>
@@ -32,16 +42,7 @@
         </div>
       </section>
     </div>
-    <router-link to="/file">
-      <div class="home_button">
-        <p>Voir le contenu de la file</p>
-      </div>
-    </router-link>
-    <router-link to="/menuBibliotheque">
-      <div class="home_button">
-        <p>Gérer sa bibliotheque</p>
-      </div>
-    </router-link>
+    
   </div>
 </template>
 
@@ -94,8 +95,40 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+ 
 }
 .musique_en_cours section {
-  width: 80%;
+  width: 50%;
+
 }
+ul,
+li {
+  list-style: none;
+  
+}
+
+ul{
+  margin-bottom: 10px;
+}
+
+.navigation {
+  background-color: rgb(60, 70, 73);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.navigation button {
+  display: block;
+  padding: 1em;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+ 
+border: none;
+background: none;
+}
+
 </style>

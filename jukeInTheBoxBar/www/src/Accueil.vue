@@ -42,6 +42,10 @@
               <br>
             </span>
           </p>
+          <div class="bt-action">
+          <img src="../images/replay.png">
+          <img src="../images/skip.png">
+          </div>
         </div>
       </section>
     </div>
@@ -128,5 +132,10 @@ ul {
 
   border: none;
   background: none;
+}
+.bt-action img{
+  margin-top: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 </style>

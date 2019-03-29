@@ -94,20 +94,20 @@ export default {
       params.append("bartender", localStorage.token);
       this.play = !this.play;
       if(this.play){
-        /*axios.post(this.apiurl + "next", params).then(() => {
+        axios.post(this.apiurl + "play", params).then(() => {
           this.getFirstFile();
-        });*/
+        });
       }
       else{
-        /*axios.post(this.apiurl + "next", params).then(() => {
+        axios.post(this.apiurl + "pause", params).then(() => {
           this.getFirstFile();
-        });*/
+        });
       }
     },
     skip(){
       const params = new URLSearchParams();
       params.append("bartender", localStorage.token);
-      axios.delete(this.apiurl + "next", {params : params}).then(() => {
+      axios.post(this.apiurl + "next", params).then(() => {
         this.getFirstFile();
       });
     }

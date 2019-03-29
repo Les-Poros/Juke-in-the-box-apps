@@ -39,6 +39,5 @@ Membres du projet :
 # Si l'on souhaite lancer une des application en mode développement sur votre navigateur :
     - cd jukeInTheBoxUti/www ou cd jukeInTheBoxUti/www
     - npm install
-    - npm run build
     - npm run dev
     - il faudra modifier manuelement le token dans votre localstorage

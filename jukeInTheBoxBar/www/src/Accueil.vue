@@ -45,7 +45,7 @@
           <div class="bt-action">
           <img v-if="play" v-on:click="status()" src="../images/pause.png">
           <img v-else v-on:click="status()" src="../images/play.png">
-          <img src="../images/replay.png">
+          <img v-on:click="repeat()" src="../images/replay.png">
           <img v-on:click="skip()" src="../images/skip.png">
           </div>
         </div>
@@ -94,21 +94,29 @@ export default {
       params.append("bartender", localStorage.token);
       this.play = !this.play;
       if(this.play){
-        axios.post(this.apiurl + "play", params).then(() => {
-          this.getFirstFile();
+        axios.post(this.apiurl + "play", null, {params: params}).then(() => {
+          //this.getFirstFile();
         });
       }
       else{
-        axios.post(this.apiurl + "pause", params).then(() => {
-          this.getFirstFile();
+        axios.post(this.apiurl + "pause", null, {params: params}).then(() => {
+          //this.getFirstFile();
         });
       }
     },
     skip(){
       const params = new URLSearchParams();
       params.append("bartender", localStorage.token);
-      axios.post(this.apiurl + "next", params).then(() => {
+      axios.post(this.apiurl + "next", null, {params: params}).then(() => {
         this.getFirstFile();
+        this.play = true;
+      });
+    },
+    repeat(){
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      axios.post(this.apiurl + "repeat", null, {params: params}).then(() => {
+        //this.getFirstFile();
       });
     }
   },

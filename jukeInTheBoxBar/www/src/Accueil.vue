@@ -43,7 +43,8 @@
             </span>
           </p>
           <div class="bt-action">
-          <img src="../images/pause.png">
+          <img v-if="play" v-on:click="status()" src="../images/pause.png">
+          <img v-else v-on:click="status()" src="../images/play.png">
           <img src="../images/replay.png">
           <img src="../images/skip.png">
           </div>
@@ -61,7 +62,8 @@ export default {
   data() {
     return {
       musique: "aucune",
-      boucle: ""
+      boucle: "",
+      play: true,
     };
   },
   beforeRouteLeave(to, from, next) {
@@ -86,6 +88,10 @@ export default {
             this.musique = "aucune";
           }
         });
+    },
+    status(){
+      this.play = !this.play;
+      
     }
   },
   created() {

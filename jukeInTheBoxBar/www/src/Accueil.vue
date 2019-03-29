@@ -43,6 +43,7 @@
             </span>
           </p>
           <div class="bt-action">
+          <img src="../images/pause.png">
           <img src="../images/replay.png">
           <img src="../images/skip.png">
           </div>

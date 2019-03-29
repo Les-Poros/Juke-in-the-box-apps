@@ -46,7 +46,7 @@
           <img v-if="play" v-on:click="status()" src="../images/pause.png">
           <img v-else v-on:click="status()" src="../images/play.png">
           <img src="../images/replay.png">
-          <img src="../images/skip.png">
+          <img v-on:click="skip()" src="../images/skip.png">
           </div>
         </div>
       </section>
@@ -90,8 +90,26 @@ export default {
         });
     },
     status(){
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
       this.play = !this.play;
-      
+      if(this.play){
+        /*axios.post(this.apiurl + "next", params).then(() => {
+          this.getFirstFile();
+        });*/
+      }
+      else{
+        /*axios.post(this.apiurl + "next", params).then(() => {
+          this.getFirstFile();
+        });*/
+      }
+    },
+    skip(){
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      axios.delete(this.apiurl + "next", {params : params}).then(() => {
+        this.getFirstFile();
+      });
     }
   },
   created() {

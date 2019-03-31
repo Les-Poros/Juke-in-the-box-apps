@@ -11,7 +11,7 @@
         placeholder="Entrer votre qrcode"
         v-on:keyup.enter="entrerToken()"
       >
-      <p v-if="!saisie">Se token n'existe pas</p>
+      <p v-if="!saisie">Ce token n'existe pas</p>
       <button v-on:click="entrerToken()">Valider</button>
     </div>
   </div>

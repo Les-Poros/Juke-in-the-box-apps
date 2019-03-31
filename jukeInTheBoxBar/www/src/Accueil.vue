@@ -43,10 +43,18 @@
             </span>
           </p>
           <div class="bt-action">
-          <img v-if="play" v-on:click="status()" src="../images/pause.png">
-          <img v-else v-on:click="status()" src="../images/play.png">
-          <img src="../images/replay.png">
-          <img src="../images/skip.png">
+            <button v-if="status!='pause'" :disabled="status!='play'" v-on:click="changeStatus()">
+              <img src="../images/pause.png">
+            </button>
+            <button v-else :disabled="status!='pause'" v-on:click="changeStatus()">
+              <img src="../images/play.png">
+            </button>
+            <button :disabled="status=='next' || status=='repeat'" v-on:click="repeat()">
+              <img src="../images/replay.png">
+            </button>
+            <button :disabled="status=='next' || status=='repeat'" v-on:click="skip()">
+              <img src="../images/skip.png">
+            </button>
           </div>
         </div>
       </section>
@@ -63,7 +71,7 @@ export default {
     return {
       musique: "aucune",
       boucle: "",
-      play: true,
+      status: "play"
     };
   },
   beforeRouteLeave(to, from, next) {
@@ -82,6 +90,7 @@ export default {
         })
         .then(response => {
           response;
+          this.getStartStatus();
           if (response.data.pistes.length > 0) {
             this.musique = response.data.pistes[0].piste;
           } else {
@@ -89,9 +98,52 @@ export default {
           }
         });
     },
-    status(){
-      this.play = !this.play;
-      
+    getStartStatus() {
+      axios
+        .get(this.apiurl + "getJukeboxAction", {
+          context: document.body,
+          params: {
+            bartender: localStorage.token
+          }
+        })
+        .then(response => {
+          this.status = response.data;
+        });
+    },
+    changeStatus() {
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      if (this.status == "pause") {
+        axios.post(this.apiurl + "play", null, { params: params }).then(() => {
+          this.status = "play";
+        });
+      } else {
+        axios.post(this.apiurl + "pause", null, { params: params }).then(() => {
+          this.status = "pause";
+        });
+      }
+    },
+    skip() {
+      this.status = "next";
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      axios.post(this.apiurl + "next", null, { params: params }).then(() => {
+        let self = this;
+        setTimeout(function() {
+          self.getFirstFile();
+        }, 2000);
+      });
+    },
+    repeat() {
+      this.status = "repeat";
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      axios.post(this.apiurl + "repeat", null, { params: params }).then(() => {
+        let self = this;
+        setTimeout(function() {
+          self.status = "play";
+        }, 2000);
+      });
     }
   },
   created() {
@@ -104,6 +156,18 @@ export default {
 </script>
 
 <style>
+.bt-action button {
+  cursor: pointer;
+  border: 0;
+  padding: 5px;
+  margin-top: 10px;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+}
+button:disabled {
+  background-color: gray;
+}
 .musique_en_cours {
   display: flex;
   flex-direction: column;
@@ -140,8 +204,7 @@ ul {
   border: none;
   background: none;
 }
-.bt-action img{
-  margin-top: 25px;
+.bt-action img {
   padding-right: 10px;
   padding-left: 10px;
 }

@@ -11,7 +11,7 @@
       <div class="bibliotheque" v-if="catalogue">
         <p
           style="text-align:right"
-        >{{catalogue.size* catalogue.pagination.act}}-{{catalogue.size*catalogue.pagination.act + catalogue.count}} sur {{catalogue.total}}</p>
+        >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
         <div
           v-cloak
           class="biblio_pistes"
@@ -47,7 +47,11 @@ export default {
     pagination
   },
   data() {
-    return { catalogue: "", search: this.$route.query.search ? this.$route.query.search : "", attente: false };
+    return {boucle:"", catalogue: "", search: this.$route.query.search ? this.$route.query.search : "", attente: false };
+  }, 
+  beforeRouteLeave(to, from, next) {
+    clearInterval(this.boucle);
+    next();
   },
   methods: {
     getCatalogue: function() {
@@ -102,6 +106,9 @@ export default {
   },
   created() {
     this.getCatalogue();
+     this.boucle = setInterval(() => {
+      this.getCatalogue();
+    }, 15000);
   }
 };
 </script>

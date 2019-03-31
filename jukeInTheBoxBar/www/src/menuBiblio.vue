@@ -1,19 +1,31 @@
 <template>
-  <div class="">
-  <ul class="navigation">
-  <li><button @click = "$router.push({
+  <div class>
+    <ul class="navigation">
+      <li>
+        <button
+          @click="$router.push({
         query: { page: 0,search:'',action:'biblio'}
-      });">Voir Sa bibliotheque</button></li>
-  <li><button @click = "$router.push({
+      });"
+        >Voir La bibliotheque</button>
+      </li>
+      <li>
+        <button
+          @click="$router.push({
         query: { page: 0,search:'',action:'ajouter'}
-      });">Ajouter Une Musique</button></li>
-  <li><button @click = "$router.push({
+      });"
+        >Ajouter Une Musique</button>
+      </li>
+      <li>
+        <button
+          @click="$router.push({
         query: { page: 0,search:'',action:'predef'}
-      });">Bibliothèque Prédéfinie</button></li>
-  
-</ul>
-<bibliotheque v-if="$route.query.action=='biblio'" v-bind:apiurl="apiurl"> </bibliotheque>
-<ajouter v-if="$route.query.action=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
+      });"
+        >Choisir Bibliothèque</button>
+      </li>
+    </ul>
+    <bibliotheque v-if="$route.query.action=='biblio'" v-bind:apiurl="apiurl"></bibliotheque>
+    <ajouter v-if="$route.query.action=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
+    <predef v-if="$route.query.action=='predef'" v-bind:apiurl="apiurl"></predef>
   </div>
 </template>
 
@@ -21,11 +33,13 @@
 import axios from "axios";
 import biblio from "./Bibliotheque.vue";
 import ajout from "./addBiblio.vue";
+import predef from "./predefBiblio.vue";
 export default {
   name: "menubiblio",
   components: {
-    'bibliotheque' : biblio,
-    'ajouter' : ajout,
+    bibliotheque: biblio,
+    ajouter: ajout,
+    predef: predef
   },
   props: ["apiurl"]
 };
@@ -34,10 +48,9 @@ export default {
 ul,
 li {
   list-style: none;
-  
 }
 
-ul{
+ul {
   margin-bottom: 10px;
 }
 
@@ -54,12 +67,8 @@ ul{
   color: white;
   font-weight: bold;
   cursor: pointer;
- 
-border: none;
-background: none;
+
+  border: none;
+  background: none;
 }
-
-
-
-
 </style>

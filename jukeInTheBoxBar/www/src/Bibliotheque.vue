@@ -1,7 +1,8 @@
 <template>
   <div>
-     <h2>Visualiser/Suprimer les musiques de votre bibliotheque : {{catalogue.nomCatag}}</h2>
-     <br>
+    <h2>Visualiser/Suprimer les musiques de votre bibliotheque : {{catalogue.nomCatag}}</h2>
+    <div v-if="catalogue">
+      <br>
       <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
       <button
         v-on:click="
@@ -10,11 +11,11 @@
       });"
         :disabled="attente"
       >rechercher</button>
-      <div class="bibliotheque" v-if="catalogue">
+      <div class="bibliotheque">
         <p
           style="text-align:right"
-        >{{catalogue.size* catalogue.pagination.act}}-{{catalogue.size*catalogue.pagination.act + catalogue.count}} sur {{catalogue.total}}</p>
-        <div
+       >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
+       <div
           v-cloak
           class="biblio_pistes"
           v-for="(piste,index) in catalogue.pistes"
@@ -29,14 +30,15 @@
               </span>
               - {{piste.nomPiste}}
             </p>
-            <button v-on:click="deleteMusicBiblio(piste.idPiste)">
+            <button v-if="catalogue.predef==0" v-on:click="deleteMusicBiblio(piste.idPiste)">
               <img src="../images/delete.png">
             </button>
           </div>
         </div>
-      <pagination :pagination="catalogue.pagination"></pagination>
       </div>
+      <pagination :pagination="catalogue.pagination"></pagination>
     </div>
+  </div>
 </template>
 
 <script>
@@ -49,7 +51,11 @@ export default {
     pagination
   },
   data() {
-    return { catalogue: "", search: this.$route.query.search ? this.$route.query.search : "", attente: false };
+    return {
+      catalogue: "",
+      search: this.$route.query.search ? this.$route.query.search : "",
+      attente: false
+    };
   },
   methods: {
     getCatalogue: function() {
@@ -79,12 +85,12 @@ export default {
   },
   watch: {
     "$route.query"() {
-      this.search= this.$route.query.search ? this.$route.query.search : "";
+      this.search = this.$route.query.search ? this.$route.query.search : "";
       this.getCatalogue();
     }
   },
   created() {
-    this.getCatalogue()
+    this.getCatalogue();
   }
 };
 </script>

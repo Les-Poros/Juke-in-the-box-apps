@@ -11,6 +11,11 @@
           <button>Gérer sa bibliotheque</button>
         </li>
       </router-link>
+      <router-link to="/statsJukebox">
+        <li>
+          <button>Statistiques</button>
+        </li>
+      </router-link>
     </ul>
 
     <div class="musique_en_cours">

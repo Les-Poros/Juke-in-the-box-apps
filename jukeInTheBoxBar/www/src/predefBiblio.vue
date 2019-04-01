@@ -22,10 +22,16 @@
           </thead>
           <tbody>
             <tr v-cloak v-for="(catag,index) in catalogue.catags" v-bind:key="index">
-              <td>{{catag.titre}}</td>
+              <td>{{catag.titre}}
+               
+                 <span v-if="catag.predef == 0" class="tag">#Perso</span>
+                 <span class="tag" v-else>#Predef</span>
+            
+              </td>
               <td>
                 <button class="add_button" v-on:click="selectCatag(catag.idBibliotheque)">Utiliser</button>
               </td>
+        
             </tr>
           </tbody>
         </table>
@@ -65,6 +71,7 @@ export default {
         })
         .then(response => {
           this.catalogue = response.data.catalogue;
+          console.log(this.catalogue);
           this.attente = false;
         });
     },
@@ -174,5 +181,17 @@ th {
 .search-zone {
   margin-bottom: 15px;
   
+}
+
+.tag {
+  color: white;
+  background-color: #2e3235;
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
 }
 </style>

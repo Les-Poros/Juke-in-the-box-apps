@@ -16,6 +16,9 @@
           <button>Statistiques</button>
         </li>
       </router-link>
+      <li>
+          <button @click="changeMode"><span v-if="blindtest===1">Retour Normal </span><span v-else-if="blindtest===0"> Mode Blindtest </span></button>
+        </li>
     </ul>
 
     <div class="musique_en_cours">
@@ -76,7 +79,8 @@ export default {
     return {
       musique: "aucune",
       boucle: "",
-      status: "play"
+      status: "play",
+      blindtest: ""
     };
   },
   beforeRouteLeave(to, from, next) {
@@ -103,7 +107,7 @@ export default {
           }
         });
     },
-    getStartStatus() {
+       getStartStatus() {
       axios
         .get(this.apiurl + "getJukeboxAction", {
           context: document.body,
@@ -112,7 +116,8 @@ export default {
           }
         })
         .then(response => {
-          this.status = response.data;
+          this.status = response.data.action;
+          this.blindtest = response.data.blindtest;
         });
     },
     changeStatus() {
@@ -125,6 +130,19 @@ export default {
       } else {
         axios.post(this.apiurl + "pause", null, { params: params }).then(() => {
           this.status = "pause";
+        });
+      }
+    },
+    changeMode() {
+      const params = new URLSearchParams();
+      params.append("bartender", localStorage.token);
+      if (this.blindtest) {
+        axios.post(this.apiurl + "modeNormal", null, { params: params }).then(() => {
+          this.blindtest = 0;
+        });
+      } else {
+        axios.post(this.apiurl + "modeBlindtest", null, { params: params }).then(() => {
+          this.blindtest = 1;
         });
       }
     },
@@ -146,7 +164,7 @@ export default {
       axios.post(this.apiurl + "repeat", null, { params: params }).then(() => {
         let self = this;
         setTimeout(function() {
-          self.status = "play";
+          self.getFirstFile();
         }, 2000);
       });
     }

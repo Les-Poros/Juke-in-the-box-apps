@@ -2,7 +2,7 @@
   <div>
       <div class="search-zone"></div>    
       <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-      <button class="search"
+      <button class="button"
         v-on:click="
          $router.push({
         query: { page: 0,search:search}
@@ -144,50 +144,12 @@ button {
   width: 30%;
   height: inherit;
 }
-.add_button {
-  width: 20%;
-  height: 80%;
-  color: #ffffff;
-  background: #456072;
-  background: linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
-  border: 1px solid #0f2636;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-}
-
-.search{
+.button{
   color : white;
   background: #456072;
-  background: linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
   border: 1px solid #0f2636;
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }

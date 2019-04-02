@@ -4,7 +4,7 @@
       <br>
       <div class="search-zone">
       <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-      <button class="search"
+      <button class="button"
         v-on:click="
          $router.push({
         query: { page: 0,search:search,action:$route.query.action}
@@ -29,7 +29,7 @@
             
               </td>
               <td>
-                <button class="add_button" v-on:click="selectCatag(catag.idBibliotheque)">Utiliser</button>
+                <button class="button" v-on:click="selectCatag(catag.idBibliotheque)">Utiliser</button>
               </td>
         
             </tr>
@@ -71,7 +71,6 @@ export default {
         })
         .then(response => {
           this.catalogue = response.data.catalogue;
-          console.log(this.catalogue);
           this.attente = false;
         });
     },
@@ -111,28 +110,16 @@ button {
  
 }
 
-.search{
+.button{
   color : white;
   background: #456072;
-  background: linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
   border: 1px solid #0f2636;
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
+
 table {
   width: 100%;
   overflow: hidden;
@@ -152,30 +139,6 @@ th {
   background-color: darkslategrey;
 
   color: white;
-}
-.add_button {
-  width: 20%;
-  height: 80%;
-  color: #ffffff;
-  background: #456072;
-  background: linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -moz-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -webkit-linear-gradient(top, #456072 0%, #2c4759 100%);
-  background: -o-linear-gradient(top, #456072 0%, #2c4759 100%);
-  border: 1px solid #0f2636;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -moz-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  -o-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
 .search-zone {

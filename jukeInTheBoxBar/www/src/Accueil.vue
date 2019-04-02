@@ -11,7 +11,7 @@
           <button>Gérer sa bibliotheque</button>
         </li>
       </router-link>
-      <router-link to="/statsJukebox">
+      <router-link to="/stat">
         <li>
           <button>Statistiques</button>
         </li>

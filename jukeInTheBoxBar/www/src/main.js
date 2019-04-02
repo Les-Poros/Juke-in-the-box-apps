@@ -5,6 +5,7 @@ import biblio from "./Bibliotheque.vue";
 import addBiblio from "./addBiblio.vue";
 import login from "./Login.vue";
 import menuBiblio from "./menuBiblio.vue";
+import stat from "./Statistiques.vue";
 
 import axios from "axios";
 
@@ -14,7 +15,8 @@ const routes = [
   { name: "Biblio", path: "/bibliotheque", component: biblio },
   { name: "MenuBiblio", path: "/menuBibliotheque", component: menuBiblio },
   { name: "AddBiblio", path: "/addBibliotheque", component: addBiblio },
-  { name: "File", path: "/file", component: file }
+  { name: "File", path: "/file", component: file },
+  { name: "stat", path: "/stat", component: stat }
 ];
 
 const router = new VueRouter({

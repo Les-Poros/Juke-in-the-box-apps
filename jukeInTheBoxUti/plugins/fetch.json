@@ -13,6 +13,8 @@
       "id": "phonegap-plugin-barcodescanner@^8.0.1"
     },
     "is_top_level": true,
-    "variables": {}
+    "variables": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+"
+    }
   }
 }

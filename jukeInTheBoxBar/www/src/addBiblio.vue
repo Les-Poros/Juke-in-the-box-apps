@@ -3,8 +3,18 @@
     <h2>Ajouter des musiques a votre bibliotheque : {{catalogue.nomCatag}}</h2>
     <div v-if="catalogue.predef==0">
       <br>
-      <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-      <button class="button"
+      <input
+        v-model="search"
+        type="text"
+        class="search-zone"
+        id="search"
+        @keyup.enter="$router.push({
+        query: { page: 0,search:search,action:$route.query.action}
+      });"
+        placeholder="rechercher"
+      >
+      <button
+        class="button"
         v-on:click="
          $router.push({
         query: { page: 0,search:search,action:$route.query.action}
@@ -12,9 +22,6 @@
         :disabled="attente"
       >rechercher</button>
       <div class="bibliotheque">
-        <p
-          style="text-align:right"
-        >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
         <div
           v-cloak
           class="biblio_pistes"
@@ -36,6 +43,9 @@
           </div>
         </div>
       </div>
+      <p
+        style="text-align:center"
+      >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
       <pagination :pagination="catalogue.pagination"></pagination>
     </div>
     <div v-else-if="catalogue.predef==1">Imposible de modifier un catalogue predefinie</div>
@@ -127,23 +137,17 @@ button {
   width: 30%;
   height: inherit;
 }
-.add_button {
-  width: 20%;
-  height: 80%;
-  color: #ffffff;
-  background: #456072;
-  background: linear-gradient(top, #456072 0%, #2c4759 100%);
-  border: 1px solid #0f2636;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+.search-zone {
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
-.button{
-  color : white;
+.button {
+  color: white;
   background: #456072;
   border: 1px solid #0f2636;
-  border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);

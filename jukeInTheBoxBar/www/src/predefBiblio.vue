@@ -1,41 +1,64 @@
 <template>
   <div>
+    <div id="myModal" class="modal" v-if="modal">
+      <div class="modal-content">
+        Musique importer dans votre bibliotheque
+        <button class="button" v-on:click="modal=false">ok</button>
+      </div>
+    </div>
+    <h2>utiliser/Importer des blibliotheques predefinies</h2>
     <div v-if="catalogue">
       <br>
-      <div class="search-zone">
-      <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
-      <button class="button"
-        v-on:click="
+      <div>
+        <input
+          v-model="search"
+          type="text"
+          class="search-zone"
+          id="search"
+          @keyup.enter="$router.push({
+        query: { page: 0,search:search,action:$route.query.action}
+      });"
+          placeholder="rechercher"
+        >
+        <button
+          class="button"
+          v-on:click="
          $router.push({
         query: { page: 0,search:search,action:$route.query.action}
       });"
-        :disabled="attente"
-      >rechercher</button>
+          :disabled="attente"
+        >rechercher</button>
       </div>
       <div class="bibliotheque">
         <table>
           <thead>
             <tr>
               <th>titre</th>
-              <th>{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-cloak v-for="(catag,index) in catalogue.catags" v-bind:key="index">
-              <td>{{catag.titre}}
-               
-                 <span v-if="catag.predef == 0" class="tag">#Perso</span>
-                 <span class="tag" v-else>#Predef</span>
-            
+              <td>
+                {{catag.titre}}
+                <span v-if="catag.predef == 0" class="tag">#Perso</span>
+                <span class="tag" v-else>#Predef</span>
               </td>
               <td>
                 <button class="button" v-on:click="selectCatag(catag.idBibliotheque)">Utiliser</button>
+                <div v-if="catag.predef">
+                  <br>
+                  <button class="button" v-on:click="integrerCatag(catag.idBibliotheque)">Importer</button>
+                </div>
               </td>
-        
             </tr>
           </tbody>
         </table>
       </div>
+      <br>
+      <p
+        style="text-align:center"
+      >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
       <pagination :pagination="catalogue.pagination"></pagination>
     </div>
   </div>
@@ -54,7 +77,8 @@ export default {
     return {
       catalogue: "",
       search: this.$route.query.search ? this.$route.query.search : "",
-      attente: false
+      attente: false,
+      modal: false
     };
   },
   methods: {
@@ -80,8 +104,16 @@ export default {
       params.append("bartender", localStorage.token);
       axios.post(this.apiurl + "selectCatag", params).then(() => {
         this.$router.push({
-        query: { page: 0,search:'',action:'biblio'}
+          query: { page: 0, search: "", action: "biblio" }
+        });
       });
+    },
+    integrerCatag: function(idCatag) {
+      const params = new URLSearchParams();
+      params.append("id", idCatag);
+      params.append("bartender", localStorage.token);
+      axios.post(this.apiurl + "integrerCatag", params).then(() => {
+        this.modal = true;
       });
     }
   },
@@ -107,14 +139,12 @@ button {
   background: none;
   box-shadow: none;
   border-radius: 0px;
- 
 }
 
-.button{
-  color : white;
+.button {
+  color: white;
   background: #456072;
   border: 1px solid #0f2636;
-  border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -133,12 +163,15 @@ th,
 td {
   text-align: left;
   padding: 8px;
+  vertical-align: middle;
 }
 
+tr:nth-child(odd) {
+  background-color: rgb(160,160,160);
+}
 tr:nth-child(even) {
-  background-color: #dbdada;
+  background-color: lightgray;
 }
-
 th {
   background-color: darkslategrey;
 
@@ -147,7 +180,10 @@ th {
 
 .search-zone {
   margin-bottom: 15px;
-  
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .tag {
@@ -160,5 +196,23 @@ th {
   -webkit-border-radius: 9px;
   -moz-border-radius: 9px;
   border-radius: 9px;
+}
+
+.modal {
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+.modal-content {
+  background-color: lightgray;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
 }
 </style>

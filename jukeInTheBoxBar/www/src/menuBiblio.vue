@@ -24,8 +24,9 @@
       </li>
     </ul>
     <bibliotheque v-if="$route.query.action=='biblio'" v-bind:apiurl="apiurl"></bibliotheque>
-    <ajouter v-if="$route.query.action=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
-    <predef v-if="$route.query.action=='predef'" v-bind:apiurl="apiurl"></predef>
+    <ajouter v-else-if="$route.query.action=='ajouter'" v-bind:apiurl="apiurl"></ajouter>
+    <predef v-else-if="$route.query.action=='predef'" v-bind:apiurl="apiurl"></predef>
+    <div v-else>Veuillez effectuer une action</div>
   </div>
 </template>
 

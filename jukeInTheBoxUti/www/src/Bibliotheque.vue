@@ -1,7 +1,19 @@
 <template>
   <div>
-      <div class="search-zone"></div>    
-      <input v-model="search" type="text" class="barre" id="search" placeholder="rechercher">
+    <br/>
+     <h2>Ajouter une musique dans la file</h2>
+      <div class="bibliotheque" v-if="catalogue">
+           
+       <input
+        v-model="search"
+        type="text"
+        class="search-zone"
+        id="search"
+        @keyup.enter="$router.push({
+        query: { page: 0,search:search}
+      });"
+        placeholder="rechercher"
+      >
       <button class="button"
         v-on:click="
          $router.push({
@@ -9,10 +21,6 @@
       });"
         :disabled="attente"
       >rechercher</button>
-      <div class="bibliotheque" v-if="catalogue">
-        <p
-          style="text-align:right"
-        >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
         <div
           v-cloak
           class="biblio_pistes"
@@ -32,7 +40,10 @@
               <img src="../images/plus.png">
             </button>
           </div>
-        </div>
+        </div><p
+          style="text-align:center"
+        >{{catalogue.pagination.size* catalogue.pagination.act}}-{{catalogue.pagination.size*catalogue.pagination.act + catalogue.pagination.count}} sur {{catalogue.pagination.total}}</p>
+        
       <pagination :pagination="catalogue.pagination"></pagination>
       </div>
     </div>
@@ -144,11 +155,17 @@ button {
   width: 30%;
   height: inherit;
 }
-.button{
-  color : white;
+.search-zone {
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.button {
+  color: white;
   background: #456072;
   border: 1px solid #0f2636;
-  border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -156,11 +173,6 @@ button {
   padding-bottom: 5px;
   padding-right: 10px;
   padding-left: 10px;
-}
-
-.search-zone {
-  margin-bottom: 15px;
-  
 }
 
 </style>

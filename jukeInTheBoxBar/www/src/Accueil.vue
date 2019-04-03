@@ -16,10 +16,14 @@
           <button>Statistiques</button>
         </li>
       </router-link>
-      <li>
-          <button @click="changeMode"><span v-if="blindtest===1">Retour Normal </span><span v-else-if="blindtest===0"> Mode Blindtest </span></button>
-        </li>
     </ul>
+    <h2>
+      Mode du jukebox :
+      <span v-if="blindtest===1">Normal</span>
+      <span v-else-if="blindtest===0">Blindtest</span>
+    </h2>
+    <br>
+    <button class="button" @click="changeMode">Changer Mode</button>
 
     <div class="musique_en_cours">
       <section v-if="musique==='aucune'">
@@ -107,7 +111,7 @@ export default {
           }
         });
     },
-       getStartStatus() {
+    getStartStatus() {
       axios
         .get(this.apiurl + "getJukeboxAction", {
           context: document.body,
@@ -137,13 +141,17 @@ export default {
       const params = new URLSearchParams();
       params.append("bartender", localStorage.token);
       if (this.blindtest) {
-        axios.post(this.apiurl + "modeNormal", null, { params: params }).then(() => {
-          this.blindtest = 0;
-        });
+        axios
+          .post(this.apiurl + "modeNormal", null, { params: params })
+          .then(() => {
+            this.blindtest = 0;
+          });
       } else {
-        axios.post(this.apiurl + "modeBlindtest", null, { params: params }).then(() => {
-          this.blindtest = 1;
-        });
+        axios
+          .post(this.apiurl + "modeBlindtest", null, { params: params })
+          .then(() => {
+            this.blindtest = 1;
+          });
       }
     },
     skip() {
@@ -209,7 +217,19 @@ li {
 ul {
   margin-bottom: 10px;
 }
-
+.button {
+  color: white;
+  background: #456072;
+  border: 1px solid #0f2636;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
 .navigation {
   background-color: rgb(60, 70, 73);
   display: flex;

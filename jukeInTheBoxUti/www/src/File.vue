@@ -1,7 +1,9 @@
 <template>
   <div>
+    <br>
+    <h2>Musique actuelement dans la file</h2>
     <div class="file">
-       <table>
+      <table>
         <thead>
           <tr>
             <th>Position</th>
@@ -49,10 +51,10 @@ export default {
           }
         })
         .then(response => {
-          if(response["data"]["pistes"].length > 0 )
-          this.listMusiques = response["data"]["pistes"];
+          if (response["data"]["pistes"].length > 0)
+            this.listMusiques = response["data"]["pistes"];
           else
-          axios
+            axios
               .get(this.apiurl + "validateJukebox", {
                 context: document.body,
                 params: {
@@ -61,12 +63,11 @@ export default {
               })
               .then(response => {
                 if (!response.data.validate)
-                this.$router.push({
+                  this.$router.push({
                     name: "Login",
                     params: { nextUrl: this.$route.fullPath }
                   });
-                  else 
-                  this.listMusiques=""
+                else this.listMusiques = "";
               });
         });
     }
@@ -84,19 +85,21 @@ export default {
 table {
   width: 100%;
   overflow: hidden;
-  
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even){background-color: #dbdada}
+tr:nth-child(even) {
+  background-color: #dbdada;
+}
 
 th {
   background-color: darkslategrey;
-  
+
   color: white;
 }
 .musique_file {
@@ -105,13 +108,14 @@ th {
   padding-right: 5%;
   padding-top: 2%;
   padding-bottom: 2%;
- }
- 
+}
+
 .file {
   border: solid grey 1px;
   border-radius: 5px;
   margin: 5%;
-  text-align: left; 
+  margin-top: 5px;
+  text-align: left;
   background-color: white;
 }
 </style>

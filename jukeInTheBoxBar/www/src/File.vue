@@ -1,5 +1,7 @@
 <template>
   <div>
+    <br>
+    <h2>Musique actuelement dans la file</h2>
     <div class="file">
       <table>
         <thead>
@@ -95,6 +97,7 @@ th {
   border: solid grey 1px;
   border-radius: 5px;
   margin: 5%;
+  margin-top: 5px;
   text-align: left;
   background-color: white;
 }

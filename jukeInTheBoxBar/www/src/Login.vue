@@ -1,18 +1,19 @@
 <template>
   <div v-cloak>
-    <div>
-      <p>Veuillez entrer votre token (qrcode)</p>
-      <br>
+    
+    <div><br/>
+      <h2>Veuillez entrer votre token (qrcode)</h2>
+      <br/>
       <input
         type="search"
         v-model="token"
-        class
+        class="token-zone"
         id="token"
-        placeholder="Entrer votre qrcode"
+        placeholder="Entrer votre token"
         v-on:keyup.enter="entrerToken()"
-      >
+      />
+      <button class="button" v-on:click="entrerToken()">Valider</button>
       <p v-if="!saisie">Ce token n'existe pas</p>
-      <button v-on:click="entrerToken()">Valider</button>
     </div>
   </div>
 </template>
@@ -56,4 +57,26 @@ export default {
 </script>
 
 <style>
+
+.button{
+  color : white;
+  background: #456072;
+  border: 1px solid #0f2636;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.token-zone {
+  margin-bottom: 15px;
+  margin-top: 15px;
+   padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 </style>

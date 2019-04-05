@@ -10,7 +10,7 @@ Membres du projet :
 # Prérequis :
 
 * cordova
-* plugin : cordova plugins add phonegap-plugin-barcodescanner
+* plugin : cordova plugins add phonegap-plugin-barcodescanner pour l'application client
 
 # Pour récupérer l'application barman et l'application client
 
@@ -23,18 +23,14 @@ Membres du projet :
 * Lancer un terminal dans le dossier cloné puis faire :
     - cd jukeInTheBoxBar/www
     - npm install
-    - npm run build
-    - cd ..
-    - cordova run android --device
+    - npm run start
 
 # Si l'on souhaite lancer l'application client sur un téléphone branché à votre ordinateur
 
 * Lancer un terminal dans le dossier cloné puis faire :
     - cd jukeInTheBoxUti/www
     - npm install
-    - npm run build
-    - cd ..
-    - cordova run android --device
+    - npm run start
 
 # Si l'on souhaite lancer une des application en mode développement sur votre navigateur :
     - cd jukeInTheBoxUti/www ou cd jukeInTheBoxUti/www

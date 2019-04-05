@@ -19,8 +19,8 @@
     </ul>
     <h2>
       Mode du jukebox :
-      <span v-if="blindtest===1">Normal</span>
-      <span v-else-if="blindtest===0">Blindtest</span>
+      <span v-if="blindtest===0">Normal</span>
+      <span v-else-if="blindtest===1">Blindtest</span>
     </h2>
     <br>
     <button class="button" @click="changeMode">Changer Mode</button>
